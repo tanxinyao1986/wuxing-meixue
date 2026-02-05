@@ -2,55 +2,59 @@ import SwiftUI
 
 /// 五个指导模块
 enum GuideModule: String, CaseIterable, Identifiable {
-    case dress = "能量着装"
-    case food = "顺时食饮"
-    case space = "身心空间"
+    case dress  = "能量着装"
+    case food   = "顺时食饮"
+    case space  = "身心空间"
     case action = "行动指南"
     case anchor = "心念之锚"
 
     var id: String { rawValue }
 
-    /// 模块对应的五行元素
+    /// 对应五行
     var element: FiveElement {
         switch self {
-        case .dress: return .wood
-        case .food: return .fire
-        case .space: return .earth
+        case .dress:  return .wood
+        case .food:   return .fire
+        case .space:  return .earth
         case .action: return .metal
         case .anchor: return .water
         }
     }
 
-    /// 模块图标
+    /// SF Symbol 图标名 — 极简线条映射
     var iconName: String {
-        element.iconName
+        switch self {
+        case .dress:  return "tshirt"          // 衬衫
+        case .food:   return "laurel.leading"    // 草本/自然循环
+        case .space:  return "house"           // 家/空间
+        case .action: return "location.north"  // 指南针
+        case .anchor: return "brain"           // 正念/大脑
+        }
     }
 
-    /// 模块颜色
-    var color: Color {
-        element.color
-    }
+    /// 模块主色 (直接桥接五行色)
+    var color: Color { element.color }
 
-    /// VoiceOver无障碍标签
+    /// VoiceOver
     var accessibilityLabel: String {
         switch self {
-        case .dress: return "能量着装，木元素，点击查看今日穿搭建议"
-        case .food: return "顺时食饮，火元素，点击查看今日饮食建议"
-        case .space: return "身心空间，土元素，点击查看今日空间建议"
+        case .dress:  return "能量着装，木元素，点击查看今日穿搭建议"
+        case .food:   return "顺时食饮，火元素，点击查看今日饮食建议"
+        case .space:  return "身心空间，土元素，点击查看今日空间建议"
         case .action: return "行动指南，金元素，点击查看今日行动建议"
         case .anchor: return "心念之锚，水元素，点击查看今日心念建议"
         }
     }
 
-    /// 获取模块内容（占位符）
+    /// 模块内容
     func content(for dayInfo: DayInfo) -> ModuleContent {
         switch self {
         case .dress:
             return ModuleContent(
                 title: "今日能量着装",
-                subtitle: "与\(dayInfo.element.rawValue)气共振",
+                subtitle: "与 \(dayInfo.element.rawValue) 气共振",
                 items: [
-                    "主色调：\(dayInfo.element.color.description)",
+                    "主色调：\(dayInfo.element.rawValue) 系柔和色彩",
                     "推荐款式：舒适自然的剪裁",
                     "配饰建议：简约而有质感",
                     "材质推荐：天然纤维面料"
@@ -108,10 +112,9 @@ enum GuideModule: String, CaseIterable, Identifiable {
     }
 }
 
-/// 模块内容结构
 struct ModuleContent {
-    let title: String
+    let title:    String
     let subtitle: String
-    let items: [String]
-    let tip: String
+    let items:    [String]
+    let tip:      String
 }

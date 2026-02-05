@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// 月历视图
+/// 月历视图 - 霜白磨砂风格 (Frosty Calendar)
 struct MonthlyCalendarView: View {
     @EnvironmentObject var viewModel: DailyGuideViewModel
     @Binding var selectedTab: MainTabView.Tab
@@ -9,33 +9,50 @@ struct MonthlyCalendarView: View {
 
     private let calendar = Calendar.current
     private let weekdaySymbols = ["日", "一", "二", "三", "四", "五", "六"]
-    private let columns = Array(repeating: GridItem(.flexible(), spacing: 0), count: 7)
+    private let columns = Array(repeating: GridItem(.flexible(), spacing: 4), count: 7)
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(spacing: 20) {
-                    // 月份导航
-                    monthNavigationHeader
+            ZStack {
+                // 底层：继承今日界面的五行背景色
+                ElementMeshBackground(element: viewModel.currentDayInfo.element)
 
-                    // 星期标题行
-                    weekdayHeader
+                // 中层：白色磨砂覆盖层
+                Rectangle()
+                    .fill(.ultraThinMaterial)
+                    .ignoresSafeArea()
 
-                    // 日期网格
-                    calendarGrid
+                // 内容层
+                ScrollView {
+                    VStack(spacing: 16) {
+                        // 月份导航头
+                        monthNavigationHeader
+                            .padding(.top, 8)
+
+                        // 五行图例
+                        elementLegend
+
+                        // 磨砂日历卡片
+                        calendarCard
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 100) // 为Tab Bar留空间
                 }
-                .padding()
             }
-            .background(Color(.systemGroupedBackground))
             .navigationTitle("月历")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("今天") {
-                        withAnimation {
+                    Button {
+                        withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
                             displayedMonth = Date()
                             selectDate(Date())
                         }
+                    } label: {
+                        Text("今天")
+                            .font(.system(size: 15, weight: .medium))
+                            .foregroundStyle(viewModel.currentDayInfo.element.color)
                     }
                     .accessibilityLabel("跳转到今天")
                 }
@@ -43,47 +60,111 @@ struct MonthlyCalendarView: View {
         }
     }
 
-    // MARK: - 月份导航
+    // MARK: - 月份导航头
     private var monthNavigationHeader: some View {
         HStack {
             Button {
-                withAnimation {
+                withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
                     goToPreviousMonth()
                 }
             } label: {
-                Image(systemName: "chevron.left")
-                    .font(.title3.weight(.medium))
-                    .foregroundStyle(.primary)
-                    .frame(width: 44, height: 44)
+                ZStack {
+                    Circle()
+                        .fill(.ultraThinMaterial)
+                        .frame(width: 40, height: 40)
+                    Image(systemName: "chevron.left")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundStyle(viewModel.currentDayInfo.element.secondaryTextColor)
+                }
             }
             .accessibilityLabel("上一个月")
 
             Spacer()
 
-            VStack(spacing: 2) {
-                Text(monthYearString)
-                    .font(.title2.weight(.semibold))
-
-                Text(LunarCalendar.ganzhiYear(for: displayedMonth))
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
+            Text(monthYearString)
+                .font(.system(size: 20, weight: .bold))
+                .foregroundStyle(viewModel.currentDayInfo.element.primaryTextColor)
 
             Spacer()
 
             Button {
-                withAnimation {
+                withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
                     goToNextMonth()
                 }
             } label: {
-                Image(systemName: "chevron.right")
-                    .font(.title3.weight(.medium))
-                    .foregroundStyle(.primary)
-                    .frame(width: 44, height: 44)
+                ZStack {
+                    Circle()
+                        .fill(.ultraThinMaterial)
+                        .frame(width: 40, height: 40)
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundStyle(viewModel.currentDayInfo.element.secondaryTextColor)
+                }
             }
             .accessibilityLabel("下一个月")
         }
         .padding(.vertical, 8)
+    }
+
+    // MARK: - 五行图例
+    private var elementLegend: some View {
+        HStack(spacing: 16) {
+            ForEach(FiveElement.allCases) { element in
+                HStack(spacing: 4) {
+                    Circle()
+                        .fill(
+                            RadialGradient(
+                                colors: [element.calendarDotCoreColor.opacity(0.9), element.calendarDotColor],
+                                center: UnitPoint(x: 0.3, y: 0.3),
+                                startRadius: 0,
+                                endRadius: 4
+                            )
+                        )
+                        .frame(width: 8, height: 8)
+                        .shadow(color: element.calendarDotColor.opacity(0.5), radius: 2, x: 0, y: 1)
+
+                    Text(element.rawValue)
+                        .font(.system(size: 11, weight: .medium))
+                        .foregroundStyle(viewModel.currentDayInfo.element.subtleTextColor)
+                }
+            }
+        }
+        .padding(.vertical, 8)
+        .padding(.horizontal, 16)
+        .background(
+            Capsule()
+                .fill(.ultraThinMaterial)
+                .overlay(
+                    Capsule()
+                        .stroke(viewModel.currentDayInfo.element.isLightBackground ? Color.black.opacity(0.12) : Color.white.opacity(0.30), lineWidth: 0.5)
+                )
+        )
+    }
+
+    // MARK: - 磨砂日历卡片
+    private var calendarCard: some View {
+        VStack(spacing: 12) {
+            // 星期标题行
+            weekdayHeader
+
+            // 日期网格
+            calendarGrid
+        }
+        .padding(16)
+        .background(
+            RoundedRectangle(cornerRadius: 24)
+                .fill(.ultraThinMaterial)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 24)
+                        .stroke(
+                            viewModel.currentDayInfo.element.isLightBackground
+                            ? Color.black.opacity(0.10)
+                            : Color.white.opacity(0.20),
+                            lineWidth: 0.8
+                        )
+                )
+                .shadow(color: .black.opacity(0.08), radius: 20, x: 0, y: 10)
+        )
     }
 
     // MARK: - 星期标题
@@ -91,20 +172,21 @@ struct MonthlyCalendarView: View {
         HStack(spacing: 0) {
             ForEach(weekdaySymbols, id: \.self) { symbol in
                 Text(symbol)
-                    .font(.caption.weight(.medium))
-                    .foregroundStyle(.secondary)
+                    .font(.system(size: 12, weight: .bold))
+                    .foregroundStyle(viewModel.currentDayInfo.element.subtleTextColor)
                     .frame(maxWidth: .infinity)
             }
         }
+        .padding(.bottom, 4)
     }
 
     // MARK: - 日历网格
     private var calendarGrid: some View {
-        LazyVGrid(columns: columns, spacing: 8) {
+        LazyVGrid(columns: columns, spacing: 6) {
             // 填充月初空白
             ForEach(0..<firstWeekdayOfMonth, id: \.self) { _ in
                 Color.clear
-                    .frame(height: 60)
+                    .frame(height: 64)
             }
 
             // 日期单元格
@@ -164,7 +246,7 @@ struct MonthlyCalendarView: View {
         HapticManager.selection()
         viewModel.selectDate(date)
         // 切换到今日Tab
-        withAnimation {
+        withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
             selectedTab = .daily
         }
     }

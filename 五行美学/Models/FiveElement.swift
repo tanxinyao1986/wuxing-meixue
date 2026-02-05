@@ -1,74 +1,158 @@
 import SwiftUI
 
-/// 五行元素枚举
+/// 五行元素枚举 — 严格执行指定 HEX 色值体系
 enum FiveElement: String, CaseIterable, Identifiable {
-    case wood = "木"
-    case fire = "火"
+    case wood  = "木"
+    case fire  = "火"
     case earth = "土"
     case metal = "金"
     case water = "水"
 
     var id: String { rawValue }
 
-    /// 元素对应的SF Symbol图标
+    // MARK: - 智能背景分类
+    /// 木、土、金 Mesh 整体偏亮 → 文字用深色；火、水 整体偏深 → 文字用白色
+    var isLightBackground: Bool {
+        switch self {
+        case .wood, .fire, .earth, .metal: return true
+        case .water:                return false
+        }
+    }
+
+    // MARK: - 智能文字色 (随背景明暗自动切换)
+    var primaryTextColor: Color {
+        isLightBackground ? Color(hex: 0x2C2C2E) : .white
+    }
+    var secondaryTextColor: Color {
+        isLightBackground ? Color(hex: 0x636366) : .white.opacity(0.6)
+    }
+    var subtleTextColor: Color {
+        isLightBackground ? Color(hex: 0x8E8E93) : .white.opacity(0.40)
+    }
+    /// 图标未选中色
+    var iconTintColor: Color {
+        isLightBackground ? Color(hex: 0x3A3A3C) : .white.opacity(0.70)
+    }
+
+    // MARK: - 图标 (保留用于五行解释页)
     var iconName: String {
         switch self {
-        case .wood: return "leaf.fill"
-        case .fire: return "flame.fill"
-        case .earth: return "mountain.2.fill"
+        case .wood:  return "leaf"
+        case .fire:  return "flame"
+        case .earth: return "mountain.2"
         case .metal: return "sparkles"
-        case .water: return "drop.fill"
+        case .water: return "drop"
         }
     }
 
-    /// 元素对应的颜色
+    // MARK: - 主色 (图标高亮、指示点、卡片边缘等场景)
     var color: Color {
         switch self {
-        case .wood: return Color(red: 0.4, green: 0.7, blue: 0.4)
-        case .fire: return Color(red: 0.9, green: 0.3, blue: 0.2)
-        case .earth: return Color(red: 0.76, green: 0.6, blue: 0.3)
-        case .metal: return Color(red: 0.85, green: 0.85, blue: 0.9)
-        case .water: return Color(red: 0.3, green: 0.5, blue: 0.8)
+        case .wood:  return Color(hex: 0x6BAF6B)  // 中绿
+        case .fire:  return Color(hex: 0xFF3B30)  // 正红
+        case .earth: return Color(hex: 0xE6C229)  // 暖金
+        case .metal: return Color(hex: 0xD1D1D6)  // 冷银色
+        case .water: return Color(hex: 0x00AEEF)  // 青蓝
         }
     }
 
-    /// 元素的渐变色
+    // MARK: - Mesh Background 色系
+
+    /// 底色 — 浅色元素用 M/H 铺满；深色元素用 B 打底
+    var meshBaseColor: Color {
+        switch self {
+        case .wood:  return Color(hex: 0x2E6B4A)  // 林绿
+        case .fire:  return Color(hex: 0xFF6B35)  // 橙红底
+        case .earth: return Color(hex: 0xA07E50)  // 深拿铁 (Dark Latte)
+        case .metal: return Color(hex: 0xF2F2F7)  // 极浅灰
+        case .water: return Color(hex: 0x004080)  // 深海蓝
+        }
+    }
+
+    /// 光影 / 柔光色
+    var meshHighlightColor: Color {
+        switch self {
+        case .wood:  return Color(hex: 0xD4E8B6)  // 青柠檬柔光
+        case .fire:  return Color(hex: 0xFFCC00)  // 明黄柔光
+        case .earth: return Color(hex: 0xD2B48C)  // 深肉桂色 (Deep Cinnamon)
+        case .metal: return Color(hex: 0xFFFFFF)  // 纯白高光
+        case .water: return Color(hex: 0x00AEEF)  // 青蓝外晕
+        }
+    }
+
+    /// 中间过渡色
+    var meshMidColor: Color {
+        switch self {
+        case .wood:  return Color(hex: 0x4A9A6E)  // 林地中调
+        case .fire:  return Color(hex: 0xFF9500)  // 橙红过渡
+        case .earth: return Color(hex: 0x9C6515)  // 深焦糖 (Deep Caramel)
+        case .metal: return Color(hex: 0xD1D1D6)  // 冷银色
+        case .water: return Color(hex: 0x0060A0)  // 深海蓝中调
+        }
+    }
+
+    // MARK: - Energy Sphere 色系
+
+    /// 内核实心色 (高饱和)
+    var coreColor: Color {
+        switch self {
+        case .wood:  return Color(hex: 0x5A9E5A)  // 深翠绿
+        case .fire:  return Color(hex: 0xFF3B30)  // 正红
+        case .earth: return Color(hex: 0xC68E17)  // 焦糖色
+        case .metal: return Color(hex: 0xC7C7CC)  // 冷银深调
+        case .water: return Color(hex: 0x006699)  // 深海蓝中调
+        }
+    }
+
+    /// 内辉光色 (较亮, blur 层)
+    var glowColor: Color {
+        switch self {
+        case .wood:  return Color(hex: 0xD4E8B6)  // 青柠檬
+        case .fire:  return Color(hex: 0xFF9500)  // 橙红辉光
+        case .earth: return Color(hex: 0xF5D0A9)  // 杏色辉光
+        case .metal: return Color(hex: 0xF2F2F7)  // 极浅灰辉光
+        case .water: return Color(hex: 0x00AEEF)  // 青蓝
+        }
+    }
+
+    // MARK: - 日历圆点色 (火单独高亮，金改为冷银)
+    var calendarDotColor: Color {
+        switch self {
+        case .fire:   return Color(hex: 0xFF3B30)  // 正红
+        case .metal:  return Color(hex: 0xD1D1D6)  // 冷银色
+        default:      return color
+        }
+    }
+    var calendarDotCoreColor: Color {
+        switch self {
+        case .fire:   return Color(hex: 0xE04030)  // 深朱核心
+        case .metal:  return Color(hex: 0xC7C7CC)  // 冷银深调
+        default:      return coreColor
+        }
+    }
+
+    // MARK: - 渐变 (ElementExplanationSheet 用)
     var gradient: LinearGradient {
         switch self {
         case .wood:
-            return LinearGradient(
-                colors: [Color(red: 0.2, green: 0.5, blue: 0.3), Color(red: 0.4, green: 0.7, blue: 0.4)],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
+            return LinearGradient(colors: [Color(hex: 0x2E6B4A), Color(hex: 0x6BAF6B)],
+                                  startPoint: .bottom, endPoint: .top)
         case .fire:
-            return LinearGradient(
-                colors: [Color(red: 0.9, green: 0.2, blue: 0.1), Color(red: 1.0, green: 0.5, blue: 0.2)],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
+            return LinearGradient(colors: [Color(hex: 0xFF6B35), Color(hex: 0xFF3B30)],
+                                  startPoint: .bottom, endPoint: .top)
         case .earth:
-            return LinearGradient(
-                colors: [Color(red: 0.6, green: 0.45, blue: 0.2), Color(red: 0.8, green: 0.65, blue: 0.35)],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
+            return LinearGradient(colors: [Color(hex: 0xC68E17), Color(hex: 0xF5D0A9)],
+                                  startPoint: .bottom, endPoint: .top)
         case .metal:
-            return LinearGradient(
-                colors: [Color(red: 0.7, green: 0.7, blue: 0.75), Color(red: 0.95, green: 0.95, blue: 1.0)],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
+            return LinearGradient(colors: [Color(hex: 0xC7C7CC), Color(hex: 0xFFFFFF)],
+                                  startPoint: .bottom, endPoint: .top)
         case .water:
-            return LinearGradient(
-                colors: [Color(red: 0.1, green: 0.3, blue: 0.6), Color(red: 0.3, green: 0.5, blue: 0.8)],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
+            return LinearGradient(colors: [Color(hex: 0x004080), Color(hex: 0x00AEEF)],
+                                  startPoint: .bottom, endPoint: .top)
         }
     }
 
-    /// 元素的详细解释
+    // MARK: - 详细解释文本
     var explanation: String {
         switch self {
         case .wood:
@@ -137,5 +221,18 @@ enum FiveElement: String, CaseIterable, Identifiable {
             情志宜静，忌恐。像水一样柔软而有力量，适应任何环境。
             """
         }
+    }
+}
+
+// MARK: - Color Hex
+extension Color {
+    init(hex: UInt, alpha: Double = 1.0) {
+        self.init(
+            .sRGB,
+            red:   Double((hex >> 16) & 0xFF) / 255.0,
+            green: Double((hex >>  8) & 0xFF) / 255.0,
+            blue:  Double( hex        & 0xFF) / 255.0,
+            opacity: alpha
+        )
     }
 }

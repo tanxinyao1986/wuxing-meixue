@@ -1,45 +1,24 @@
 import SwiftUI
 
-/// 每日指南容器视图 - 支持左右滑动切换日期
+/// 每日指南容器 — 包裹 DailyGuideView，提供左右滑动切换日期手势。
 struct DailyGuideContainerView: View {
     @EnvironmentObject var viewModel: DailyGuideViewModel
     @State private var dragOffset: CGFloat = 0
-    @GestureState private var isDragging = false
 
     var body: some View {
-        GeometryReader { geometry in
+        GeometryReader { geo in
             ZStack {
-                // 背景
-                AppBackground()
-
-                // 主内容
                 DailyGuideView()
                     .offset(x: dragOffset)
 
-                // 今日按钮（非今天时显示）
+                // 非今天时：右上角回归今天胶囊
                 if !viewModel.isToday {
                     VStack {
                         HStack {
                             Spacer()
-                            Button {
-                                HapticManager.subtle()
-                                withAnimation(.easeInOut(duration: 0.3)) {
-                                    viewModel.goToToday()
-                                }
-                            } label: {
-                                HStack(spacing: 4) {
-                                    Image(systemName: "arrow.uturn.backward")
-                                    Text("今天")
-                                }
-                                .font(.subheadline.weight(.medium))
-                                .foregroundStyle(.white)
-                                .padding(.horizontal, 12)
-                                .padding(.vertical, 8)
-                                .background(.ultraThinMaterial, in: Capsule())
-                            }
-                            .accessibilityLabel("返回今天")
-                            .padding(.trailing, 20)
-                            .padding(.top, 8)
+                            todayButton
+                                .padding(.trailing, 20)
+                                .padding(.top, 56)
                         }
                         Spacer()
                     }
@@ -47,27 +26,18 @@ struct DailyGuideContainerView: View {
             }
             .gesture(
                 DragGesture()
-                    .updating($isDragging) { _, state, _ in
-                        state = true
-                    }
                     .onChanged { value in
-                        // 只有在模块未展开时允许滑动
                         guard viewModel.expandedModule == nil else { return }
-                        dragOffset = value.translation.width * 0.4
+                        dragOffset = value.translation.width * 0.35
                     }
                     .onEnded { value in
                         guard viewModel.expandedModule == nil else { return }
-
                         let threshold: CGFloat = 50
-                        let velocity = value.predictedEndTranslation.width
-
-                        withAnimation(.easeInOut(duration: 0.3)) {
-                            if value.translation.width > threshold || velocity > 200 {
-                                // 向右滑动 - 前一天
+                        withAnimation(.easeInOut(duration: 0.28)) {
+                            if value.translation.width > threshold || value.predictedEndTranslation.width > 200 {
                                 viewModel.goToPreviousDay()
                                 HapticManager.selection()
-                            } else if value.translation.width < -threshold || velocity < -200 {
-                                // 向左滑动 - 后一天
+                            } else if value.translation.width < -threshold || value.predictedEndTranslation.width < -200 {
                                 viewModel.goToNextDay()
                                 HapticManager.selection()
                             }
@@ -76,10 +46,30 @@ struct DailyGuideContainerView: View {
                     }
             )
         }
+        .ignoresSafeArea()
     }
-}
 
-#Preview {
-    DailyGuideContainerView()
-        .environmentObject(DailyGuideViewModel())
+    // MARK: - 今天回归按钮
+    private var todayButton: some View {
+        Button {
+            HapticManager.subtle()
+            withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+                viewModel.goToToday()
+            }
+        } label: {
+            HStack(spacing: 5) {
+                Image(systemName: "arrow.uturn.backward")
+                    .font(.system(size: 12, weight: .medium))
+                Text("今天")
+                    .font(.custom("PingFang SC", size: 13))
+                    .fontWeight(.medium)
+            }
+            .foregroundStyle(viewModel.currentDayInfo.element.primaryTextColor)
+            .padding(.horizontal, 14)
+            .padding(.vertical, 7)
+            .background(Capsule().fill(.ultraThinMaterial))
+            .shadow(color: .black.opacity(0.2), radius: 8, x: 0, y: 4)
+        }
+        .accessibilityLabel("返回今天")
+    }
 }

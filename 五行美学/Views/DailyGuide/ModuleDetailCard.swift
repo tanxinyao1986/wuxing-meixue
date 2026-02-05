@@ -1,99 +1,133 @@
 import SwiftUI
 
-/// 模块详情卡片 - 毛玻璃效果
+/// 模块详情卡片 — 极简透明玻璃风格
 struct ModuleDetailCard: View {
     let module: GuideModule
     let content: ModuleContent
     let onClose: () -> Void
 
-    @Environment(\.dynamicTypeSize) var dynamicTypeSize
-
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            // 标题区域
-            HStack {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(content.title)
-                        .font(.headline)
-                        .foregroundStyle(.primary)
-
-                    Text(content.subtitle)
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                }
-
-                Spacer()
-
-                // 关闭按钮
-                Button {
-                    onClose()
-                } label: {
-                    Image(systemName: "xmark.circle.fill")
-                        .font(.title2)
-                        .foregroundStyle(.secondary)
-                }
-                .accessibilityLabel("关闭详情卡片")
-            }
-
-            Divider()
-                .background(module.color.opacity(0.3))
-
-            // 内容列表
-            VStack(alignment: .leading, spacing: 12) {
-                ForEach(content.items, id: \.self) { item in
-                    HStack(alignment: .top, spacing: 12) {
-                        Circle()
-                            .fill(module.color)
-                            .frame(width: 6, height: 6)
-                            .padding(.top, 6)
-
-                        Text(item)
-                            .font(.body)
-                            .foregroundStyle(.primary)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                }
-            }
-
-            // 提示语
-            if !content.tip.isEmpty {
-                HStack {
-                    Image(systemName: "lightbulb.fill")
-                        .foregroundStyle(.yellow)
-                        .font(.caption)
-
-                    Text(content.tip)
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                        .italic()
-                }
-                .padding(.top, 8)
-            }
+            headerRow
+            divider
+            itemsList
+            if !content.tip.isEmpty { tipRow }
         }
         .padding(20)
-        .background(
-            RoundedRectangle(cornerRadius: 20)
-                .fill(.ultraThinMaterial)
-                .shadow(color: module.color.opacity(0.2), radius: 20, x: 0, y: 10)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: 20)
-                .stroke(module.color.opacity(0.3), lineWidth: 1)
-        )
+        .background(cardBG)
         .accessibilityElement(children: .contain)
         .accessibilityLabel("\(module.rawValue)详情")
     }
-}
 
-#Preview {
-    ZStack {
-        AppBackground()
+    // MARK: - Header Icon
+    /// 火/金用渐变实心圆（朱砂红 / 流光金），其余用半透明色圆。
+    private var headerIcon: some View {
+        let el = module.element
+        let hasGradient = (el == .fire || el == .metal)
+        return ZStack {
+            if el == .fire {
+                Circle().fill(LinearGradient(colors: [Color(hex: 0xFF3B30), Color(hex: 0xFF9500)],
+                                              startPoint: .bottomLeading, endPoint: .topTrailing))
+            } else if el == .metal {
+                Circle().fill(LinearGradient(colors: [Color(hex: 0xC7C7CC), Color(hex: 0xFFFFFF)],
+                                              startPoint: .bottomLeading, endPoint: .topTrailing))
+            } else {
+                Circle().fill(module.color.opacity(0.25))
+            }
+            Image(systemName: module.iconName)
+                .font(.system(size: 15, weight: .light))
+                .foregroundStyle(hasGradient ? Color.white : module.color)
+        }
+        .frame(width: 34, height: 34)
+    }
 
-        ModuleDetailCard(
-            module: .dress,
-            content: GuideModule.dress.content(for: DayInfo.forDate(Date())),
-            onClose: {}
+    // MARK: - Header
+    private var headerRow: some View {
+        let el = module.element
+        return HStack {
+            HStack(spacing: 10) {
+                headerIcon
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(content.title)
+                        .font(.custom("PingFang SC", size: 16))
+                        .fontWeight(.semibold)
+                        .foregroundStyle(el.primaryTextColor)
+                    Text(content.subtitle)
+                        .font(.custom("PingFang SC", size: 12))
+                        .tracking(1)
+                        .foregroundStyle(el.secondaryTextColor)
+                }
+            }
+            Spacer()
+            Button(action: onClose) {
+                Image(systemName: "xmark")
+                    .font(.system(size: 12, weight: .medium))
+                    .foregroundStyle(el.secondaryTextColor)
+                    .frame(width: 28, height: 28)
+                    .background(Circle().fill(el.isLightBackground ? .black.opacity(0.06) : .white.opacity(0.10)))
+            }
+            .accessibilityLabel("关闭")
+        }
+    }
+
+    private var divider: some View {
+        Capsule()
+            .fill(module.color.opacity(0.35))
+            .frame(height: 1)
+    }
+
+    // MARK: - 内容列表
+    private var itemsList: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            ForEach(Array(content.items.enumerated()), id: \.offset) { i, item in
+                HStack(alignment: .center, spacing: 10) {
+                    Text("\(i + 1)")
+                        .font(.system(size: 11, weight: .bold))
+                        .foregroundStyle(module.color)
+                        .frame(width: 20, height: 20)
+                        .background(Circle().fill(module.color.opacity(0.2)))
+                    Text(item)
+                        .font(.custom("PingFang SC", size: 14))
+                        .tracking(0.5)
+                        .foregroundStyle(module.element.primaryTextColor)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+        }
+    }
+
+    // MARK: - Tip
+    private var tipRow: some View {
+        HStack(spacing: 8) {
+            Image(systemName: "lightbulb")
+                .font(.system(size: 13, weight: .light))
+                .foregroundStyle(Color(hex: 0xFFD54F))
+            Text(content.tip)
+                .font(.custom("PingFang SC", size: 13))
+                .tracking(0.5)
+                .foregroundStyle(module.element.secondaryTextColor)
+                .italic()
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 9)
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color(hex: 0xFFD54F).opacity(0.07))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color(hex: 0xFFD54F).opacity(0.18), lineWidth: 0.5)
+                )
         )
-        .padding()
+    }
+
+    // MARK: - 卡片底
+    private var cardBG: some View {
+        RoundedRectangle(cornerRadius: 20)
+            .fill(.ultraThinMaterial)
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(module.element.isLightBackground ? Color.black.opacity(0.10) : Color.white.opacity(0.12), lineWidth: 0.6)
+            )
+            .shadow(color: .black.opacity(0.18), radius: 16, x: 0, y: 8)
     }
 }

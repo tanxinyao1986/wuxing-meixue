@@ -1,90 +1,112 @@
 import SwiftUI
 
-/// 中央圆环视图
+/// 今日光球 — 三层 2D 模糊光晕叠加，无实体感，纯"自发光体"。
+/// 禅意呼吸动画：Scale↑ → Opacity↓ → Blur↑ 三维协同，4s 极慢周期。
+/// 架构：光晕层(动) + 内核层(微动) + 文字层(静止)
 struct CentralRingView: View {
     let dayInfo: DayInfo
-    @Environment(\.dynamicTypeSize) var dynamicTypeSize
 
-    private let ringSize: CGFloat = 200
+    /// 0→1 循环，驱动光晕呼吸动画
+    @State private var breath: Double = 0
+    /// 内核微呼吸，幅度极小
+    @State private var coreBreath: Double = 0
 
     var body: some View {
         ZStack {
-            // 外圈渐变边框
-            Circle()
-                .stroke(
-                    LinearGradient(
-                        colors: [
-                            dayInfo.element.color.opacity(0.6),
-                            dayInfo.element.color.opacity(0.2),
-                            dayInfo.element.color.opacity(0.4)
-                        ],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    ),
-                    lineWidth: 2
-                )
-                .frame(width: ringSize, height: ringSize)
+            // ═══ 中间层：视觉效果层 (Visual Effect Layer) ═══
+            atmosphereLayer   // Layer 3 — 最外，极大模糊（明显呼吸）
+                .allowsHitTesting(false)
+            innerGlowLayer    // Layer 2 — 中层辉光（明显呼吸）
 
-            // 内圈微光效果
-            Circle()
-                .fill(
-                    RadialGradient(
-                        colors: [
-                            dayInfo.element.color.opacity(0.1),
-                            Color.clear
-                        ],
-                        center: .center,
-                        startRadius: 0,
-                        endRadius: ringSize / 2
-                    )
-                )
-                .frame(width: ringSize - 4, height: ringSize - 4)
+            // ═══ 内核层：承载文字的容器 (Core Layer) ═══
+            coreLayer         // Layer 1 — 内核实心（微弱呼吸）
 
-            // 内容
-            VStack(spacing: 8) {
-                // 公历日期 - 大字号
-                Text(dayInfo.gregorianDateString)
-                    .font(.system(size: scaledFontSize(base: 56), weight: .ultraLight, design: .rounded))
-                    .foregroundStyle(.primary)
-                    .accessibilityLabel("公历\(dayInfo.gregorianMonthString)\(dayInfo.gregorianDateString)日")
-
-                // 农历日期
-                Text(LunarCalendar.lunarDateString(for: dayInfo.date))
-                    .font(.system(size: scaledFontSize(base: 14), weight: .regular))
-                    .foregroundStyle(.secondary)
-                    .accessibilityLabel("农历\(LunarCalendar.lunarDateString(for: dayInfo.date))")
-
-                // 核心关键词
-                Text(dayInfo.mainKeyword)
-                    .font(.system(size: scaledFontSize(base: 16), weight: .medium))
-                    .foregroundStyle(dayInfo.element.color)
-                    .padding(.top, 4)
-                    .accessibilityLabel("今日关键词：\(dayInfo.mainKeyword)")
-            }
+            // ═══ 最顶层：内容层 (Content Layer - 绝对静止) ═══
+            textLayer         // 文字始终锐利，不参与任何动画
         }
-        .frame(width: ringSize, height: ringSize)
-    }
-
-    /// 根据动态字体设置缩放字号
-    private func scaledFontSize(base: CGFloat) -> CGFloat {
-        switch dynamicTypeSize {
-        case .xSmall, .small:
-            return base * 0.85
-        case .medium, .large:
-            return base
-        case .xLarge, .xxLarge:
-            return base * 1.1
-        case .xxxLarge:
-            return base * 1.2
-        default:
-            return base * 1.3
+        .onAppear {
+            startBreathingAnimation()
         }
     }
-}
 
-#Preview {
-    ZStack {
-        AppBackground()
-        CentralRingView(dayInfo: DayInfo.forDate(Date()))
+    // MARK: - 启动呼吸动画
+    private func startBreathingAnimation() {
+        // 光晕层：明显的呼吸效果
+        withAnimation(.easeInOut(duration: 4.0).repeatForever(autoreverses: true)) {
+            breath = 1
+        }
+        // 内核层：极其微弱的呼吸，延迟启动形成层次感
+        withAnimation(.easeInOut(duration: 5.0).repeatForever(autoreverses: true).delay(0.5)) {
+            coreBreath = 1
+        }
+    }
+
+    // MARK: - Layer 3: Atmosphere (外逸散) — 明显呼吸
+    /// 极大圆, 呼吸时：scale↑ blur↑ opacity↓
+    private var atmosphereLayer: some View {
+        Circle()
+            .fill(dayInfo.element.glowColor)
+            .frame(width: atmosphereSize, height: atmosphereSize)
+            .scaleEffect(1.0 + breath * 0.18)        // 1.0 → 1.18 (扩张)
+            .opacity(0.28 - breath * 0.14)            // 0.28 → 0.14 (变淡)
+            .blur(radius: 50 + breath * 15)           // 50 → 65 (边缘虚化)
+    }
+
+    // MARK: - Layer 2: Inner Glow (内辉光) — 明显呼吸
+    /// 中圆, 呼吸时：scale↑ blur↑ opacity↓
+    private var innerGlowLayer: some View {
+        Circle()
+            .fill(dayInfo.element.glowColor)
+            .frame(width: innerGlowSize, height: innerGlowSize)
+            .scaleEffect(1.0 + breath * 0.15)        // 1.0 → 1.15 (扩张)
+            .opacity(0.75 - breath * 0.18)            // 0.75 → 0.57 (变淡)
+            .blur(radius: 8 + breath * 8)             // 8 → 16 (边缘虚化)
+    }
+
+    // MARK: - 尺寸常量
+    private let sphereSize: CGFloat = 240
+    private let innerGlowSize: CGFloat = 150
+    private let atmosphereSize: CGFloat = 300
+
+    // MARK: - Layer 1: Core (内核容器) — 极微弱呼吸
+    /// 毛玻璃容器，染色 opacity 微弱变化，维持玻璃质感但不透底
+    private var coreLayer: some View {
+        Circle()
+            .fill(.ultraThinMaterial)
+            .background(
+                Circle()
+                    .fill(dayInfo.element.color)
+                    .opacity(0.30 + coreBreath * 0.08)  // 0.30 → 0.38 (极微弱)
+            )
+            .frame(width: sphereSize, height: sphereSize)
+            .scaleEffect(1.0 + coreBreath * 0.02)      // 1.0 → 1.02 (几乎不可察觉)
+            .shadow(color: dayInfo.element.color.opacity(0.20 + coreBreath * 0.05), radius: 14, x: 0, y: 5)
+    }
+
+    // MARK: - Text (最顶层 — 绝对静止，始终锐利)
+    /// 文字独立于所有动画，保持 opacity: 1.0 和清晰度
+    private var textLayer: some View {
+        VStack(spacing: 3) {
+            // 大日期数字 — Serif Light，纯白
+            Text(dayInfo.gregorianDateString)
+                .font(.system(size: 58, weight: .light, design: .serif))
+                .foregroundStyle(.white)
+                .shadow(color: .black.opacity(0.25), radius: 4, x: 0, y: 2)
+
+            // 农历 — PingFang SC + tracking
+            Text(LunarCalendar.lunarDateString(for: dayInfo.date))
+                .font(.custom("PingFang SC", size: 12))
+                .tracking(2)
+                .foregroundStyle(.white.opacity(0.75))
+                .shadow(color: .black.opacity(0.20), radius: 3, x: 0, y: 1)
+
+            // 核心关键词 — 24pt Bold 纯白
+            Text(dayInfo.mainKeyword)
+                .font(.custom("PingFang SC", size: 24))
+                .fontWeight(.bold)
+                .tracking(2)
+                .foregroundStyle(.white)
+                .shadow(color: .black.opacity(0.30), radius: 5, x: 0, y: 2)
+        }
     }
 }
