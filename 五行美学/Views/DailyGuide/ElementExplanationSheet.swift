@@ -14,17 +14,27 @@ struct ElementExplanationSheet: View {
         switch displayElement {
         case .fire, .wood, .water:
             return .white.opacity(0.92)
+        case .metal:
+            return Color(hex: 0x2C2C2E)
         default:
-            return displayElement.color
+            return displayElement.primaryTextColor
         }
     }
     private var labelTitleColor: Color {
         switch displayElement {
         case .fire, .wood, .water:
             return .white.opacity(0.7)
+        case .metal:
+            return Color(hex: 0x4A4A4C)
         default:
-            return Color(hex: 0x6E6E73)
+            return displayElement.secondaryTextColor
         }
+    }
+    private var sectionTitleColor: Color {
+        if displayElement == .metal {
+            return Color(hex: 0x2C2C2E)
+        }
+        return sheetLightBg ? displayElement.color : displayElement.glowColor
     }
 
     var body: some View {
@@ -80,6 +90,8 @@ struct ElementExplanationSheet: View {
                             Text(keywordLine)
                                 .font(AppFont.calligraphy(20, weight: .semibold))
                                 .tracking(2)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .multilineTextAlignment(.leading)
                         }
                     }
 
@@ -138,10 +150,10 @@ struct ElementExplanationSheet: View {
         .background(
             Capsule()
                 .fill(.ultraThinMaterial)
-                .opacity(0.6)
+                .opacity(displayElement == .metal ? 0.85 : 0.6)
                 .overlay(
                     Capsule()
-                        .stroke(Color.white.opacity(0.25), lineWidth: 0.6)
+                        .stroke(displayElement == .metal ? Color.black.opacity(0.15) : Color.white.opacity(0.25), lineWidth: 0.6)
                 )
         )
     }
@@ -166,7 +178,7 @@ struct ElementExplanationSheet: View {
         VStack(alignment: .leading, spacing: 12) {
             Text(title)
                 .font(AppFont.display(16, weight: .semibold))
-                .foregroundStyle(sheetLightBg ? displayElement.color : displayElement.glowColor)
+                .foregroundStyle(sectionTitleColor)
             content()
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundStyle(sheetLightBg ? Color(hex: 0x3A3A3C) : Color.white.opacity(0.82))

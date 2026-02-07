@@ -39,7 +39,7 @@ struct DailyGuideView: View {
                     .scaleEffect(isExpanded ? 0.7 : 1.0)
                     .animation(.spring(response: 0.5, dampingFraction: 0.8), value: isExpanded)
                     .onTapGesture {
-                        HapticManager.subtle()
+                        HapticManager.bloom()
                         viewModel.showElementInfo()
                     }
 
@@ -60,7 +60,7 @@ struct DailyGuideView: View {
                         index: idx  // 传递索引用于异步悬浮动画
                     )
                     .onTapGesture {
-                        HapticManager.selection()
+                        HapticManager.moduleTap()
                         viewModel.toggleModule(mod)
                     }
                 }
@@ -71,7 +71,7 @@ struct DailyGuideView: View {
                         module: mod,
                         content: mod.content(for: viewModel.currentDayInfo),
                         onClose: {
-                            HapticManager.subtle()
+                            HapticManager.dismiss()
                             viewModel.collapseModule()
                         }
                     )

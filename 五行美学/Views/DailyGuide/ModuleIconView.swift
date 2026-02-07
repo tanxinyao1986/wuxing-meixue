@@ -112,7 +112,7 @@ struct ModuleIconView: View {
 
             // SF Symbol — 智能颜色
             Image(systemName: module.iconName)
-                .font(.system(size: 22, weight: .light))
+                .font(.system(size: 23, weight: .light))
                 .foregroundStyle(iconColor)
         }
     }
@@ -131,6 +131,7 @@ struct ModuleIconView: View {
                     .opacity(0.12)
             )
             .shadow(color: .black.opacity(0.18), radius: 1.5, x: 0, y: 0.5)
+            .shadow(color: .black.opacity(0.12), radius: 0.8, x: 0, y: 0.3)
     }
 }
 
@@ -144,7 +145,7 @@ extension ModuleIconView {
         arcTopY: CGFloat,      // 弧线两端的 Y
         depth: CGFloat         // 中心比两端低多少
     ) -> [CGPoint] {
-        let margin: CGFloat = 28          // 左右边缘留白 (48→28)
+        let margin: CGFloat = 40          // 左右边缘留白 (更松弛)
         let usableWidth = screenWidth - margin * 2
         return (0..<count).map { i in
             let t = Double(i) / Double(count - 1)         // 0 … 1

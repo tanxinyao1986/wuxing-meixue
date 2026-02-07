@@ -10,6 +10,8 @@ struct CentralRingView: View {
     @State private var breath: Double = 0
     /// 内核微呼吸，幅度极小
     @State private var coreBreath: Double = 0
+    /// 太极纹理旋转
+    @State private var taiChiRotation: Double = 0
 
     var body: some View {
         ZStack {
@@ -21,11 +23,15 @@ struct CentralRingView: View {
             // ═══ 内核层：承载文字的容器 (Core Layer) ═══
             coreLayer         // Layer 1 — 内核实心（微弱呼吸）
 
+            // ═══ 太极纹理层：若隐若现，缓慢旋转 ═══
+            taiChiLayer
+
             // ═══ 最顶层：内容层 (Content Layer - 绝对静止) ═══
             textLayer         // 文字始终锐利，不参与任何动画
         }
         .onAppear {
             startBreathingAnimation()
+            startTaiChiRotation()
         }
     }
 
@@ -38,6 +44,13 @@ struct CentralRingView: View {
         // 内核层：极其微弱的呼吸，延迟启动形成层次感
         withAnimation(.easeInOut(duration: 5.0).repeatForever(autoreverses: true).delay(0.5)) {
             coreBreath = 1
+        }
+    }
+
+    // MARK: - 启动太极缓慢旋转
+    private func startTaiChiRotation() {
+        withAnimation(.linear(duration: 60).repeatForever(autoreverses: false)) {
+            taiChiRotation = 360
         }
     }
 
@@ -67,20 +80,46 @@ struct CentralRingView: View {
     private let sphereSize: CGFloat = 240
     private let innerGlowSize: CGFloat = 150
     private let atmosphereSize: CGFloat = 300
+    private let taiChiSize: CGFloat = 220
+
+    private var taiChiBlendMode: BlendMode {
+        if dayInfo.element == .metal || dayInfo.element == .earth {
+            return .softLight
+        }
+        return .overlay
+    }
+
+    private var taiChiOpacity: Double {
+        if dayInfo.element == .metal || dayInfo.element == .earth {
+            return 0.48
+        }
+        return 0.38
+    }
 
     // MARK: - Layer 1: Core (内核容器) — 极微弱呼吸
     /// 毛玻璃容器，染色 opacity 微弱变化，维持玻璃质感但不透底
     private var coreLayer: some View {
         Circle()
-            .fill(.ultraThinMaterial)
-            .background(
-                Circle()
-                    .fill(dayInfo.element.color)
-                    .opacity(0.30 + coreBreath * 0.08)  // 0.30 → 0.38 (极微弱)
-            )
+            .fill(Color.clear)
             .frame(width: sphereSize, height: sphereSize)
             .scaleEffect(1.0 + coreBreath * 0.02)      // 1.0 → 1.02 (几乎不可察觉)
-            .shadow(color: dayInfo.element.color.opacity(0.20 + coreBreath * 0.05), radius: 14, x: 0, y: 5)
+            .shadow(color: .clear, radius: 0, x: 0, y: 0)
+    }
+
+    // MARK: - TaiChi Layer (内核纹理层)
+    private var taiChiLayer: some View {
+        Image("TaiChiSymbol")
+            .resizable()
+            .scaledToFit()
+            .frame(width: taiChiSize, height: taiChiSize)
+            .blendMode(taiChiBlendMode)
+            .opacity(taiChiOpacity)
+            .rotationEffect(.degrees(taiChiRotation))
+            .blur(radius: 0.35)
+            .clipShape(Circle().inset(by: 6))
+            .allowsHitTesting(false)
+            .compositingGroup()
+            .drawingGroup()
     }
 
     // MARK: - Text (最顶层 — 绝对静止，始终锐利)
@@ -97,7 +136,7 @@ struct CentralRingView: View {
             Text(LunarCalendar.lunarDateString(for: dayInfo.date))
                 .font(AppFont.ui(12))
                 .tracking(2)
-                .foregroundStyle(.white.opacity(0.75))
+                .foregroundStyle(dayInfo.element.isLightBackground ? dayInfo.element.primaryTextColor.opacity(0.65) : .white.opacity(0.75))
                 .shadow(color: .black.opacity(0.20), radius: 3, x: 0, y: 1)
 
             // 核心关键词 — 24pt Bold 纯白

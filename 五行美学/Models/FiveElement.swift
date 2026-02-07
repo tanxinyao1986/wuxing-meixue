@@ -61,7 +61,7 @@ enum FiveElement: String, CaseIterable, Identifiable {
         case .wood:  return Color(hex: 0x2E6B4A)  // 林绿
         case .fire:  return Color(hex: 0xFF6B35)  // 橙红底
         case .earth: return Color(hex: 0xA07E50)  // 深拿铁 (Dark Latte)
-        case .metal: return Color(hex: 0xF2F2F7)  // 极浅灰
+        case .metal: return Color(hex: 0xDADDE2)  // 银灰底（降低眩光）
         case .water: return Color(hex: 0x004080)  // 深海蓝
         }
     }
@@ -72,7 +72,7 @@ enum FiveElement: String, CaseIterable, Identifiable {
         case .wood:  return Color(hex: 0xD4E8B6)  // 青柠檬柔光
         case .fire:  return Color(hex: 0xFFCC00)  // 明黄柔光
         case .earth: return Color(hex: 0xD2B48C)  // 深肉桂色 (Deep Cinnamon)
-        case .metal: return Color(hex: 0xFFFFFF)  // 纯白高光
+        case .metal: return Color(hex: 0xF6F7F9)  // 柔白高光
         case .water: return Color(hex: 0x00AEEF)  // 青蓝外晕
         }
     }

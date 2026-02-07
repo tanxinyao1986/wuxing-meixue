@@ -23,12 +23,22 @@ enum GuideModule: String, CaseIterable, Identifiable {
 
     /// SF Symbol 图标名 — 极简线条映射
     var iconName: String {
+        SymbolResolver.resolve(candidates: symbolCandidates, fallback: "questionmark")
+    }
+
+    /// 候选符号：按“精致线条/东方意象”优先级排列
+    private var symbolCandidates: [String] {
         switch self {
-        case .dress:  return "tshirt"          // 衬衫
-        case .food:   return "laurel.leading"    // 草本/自然循环
-        case .space:  return "house"           // 家/空间
-        case .action: return "location.north"  // 指南针
-        case .anchor: return "brain"           // 正念/大脑
+        case .dress:
+            return ["tshirt", "tshirt.fill", "hanger", "suitcase"]
+        case .food:
+            return ["cup.and.saucer", "cup.and.saucer.fill", "leaf", "leaf.fill"]
+        case .space:
+            return ["building.columns", "house", "house.fill"]
+        case .action:
+            return ["sailboat", "sailboat.fill", "location.north"]
+        case .anchor:
+            return ["heart.circle", "heart.circle.fill", "hands.and.sparkles", "hand.raised.heart", "heart"]
         }
     }
 

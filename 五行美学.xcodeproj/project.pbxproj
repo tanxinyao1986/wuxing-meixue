@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		327672192F36F3EB007DBB0A /* LunarSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B889450FB0D34225BCF004C2 /* LunarSwift */; };
-		49ADC8FC6BEC4BB4BB2CE932 /* ElementInsights.json in Resources */ = {isa = PBXBuildFile; fileRef = 673E2F4EBE5F4CB0A56098FE /* ElementInsights.json */; };
-		AA926BDB334547308DEFB346 /* FiveElementsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 69C16226571A42018EDD4BA2 /* FiveElementsData.json */; };
+		49ADC8FC6BEC4BB4BB2CE932 /* 五行美学/ElementInsights.json in Resources */ = {isa = PBXBuildFile; fileRef = 673E2F4EBE5F4CB0A56098FE /* 五行美学/ElementInsights.json */; };
+		AA926BDB334547308DEFB346 /* 五行美学/FiveElementsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 69C16226571A42018EDD4BA2 /* 五行美学/FiveElementsData.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		325812862F2FB3AC00B2428B /* 五行美学.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "五行美学.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		673E2F4EBE5F4CB0A56098FE /* ElementInsights.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "五行美学/ElementInsights.json"; sourceTree = SOURCE_ROOT; };
-		69C16226571A42018EDD4BA2 /* FiveElementsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "五行美学/FiveElementsData.json"; sourceTree = SOURCE_ROOT; };
+		673E2F4EBE5F4CB0A56098FE /* 五行美学/ElementInsights.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "五行美学/ElementInsights.json"; sourceTree = SOURCE_ROOT; };
+		69C16226571A42018EDD4BA2 /* 五行美学/FiveElementsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "五行美学/FiveElementsData.json"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -43,6 +43,7 @@
 			children = (
 				325812882F2FB3AC00B2428B /* 五行美学 */,
 				325812872F2FB3AC00B2428B /* Products */,
+				32A052632F37400F00A030FC /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,6 +53,15 @@
 				325812862F2FB3AC00B2428B /* 五行美学.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		32A052632F37400F00A030FC /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				673E2F4EBE5F4CB0A56098FE /* 五行美学/ElementInsights.json */,
+				69C16226571A42018EDD4BA2 /* 五行美学/FiveElementsData.json */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,8 +132,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49ADC8FC6BEC4BB4BB2CE932 /* ElementInsights.json in Resources */,
-				AA926BDB334547308DEFB346 /* FiveElementsData.json in Resources */,
+				49ADC8FC6BEC4BB4BB2CE932 /* 五行美学/ElementInsights.json in Resources */,
+				AA926BDB334547308DEFB346 /* 五行美学/FiveElementsData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
