@@ -35,7 +35,7 @@ struct ModuleDetailCard: View {
                 Circle().fill(module.color.opacity(0.25))
             }
             Image(systemName: module.iconName)
-                .font(.system(size: 15, weight: .light))
+                .font(AppFont.ui(15, weight: .light))
                 .foregroundStyle(hasGradient ? Color.white : module.color)
         }
         .frame(width: 34, height: 34)
@@ -49,11 +49,10 @@ struct ModuleDetailCard: View {
                 headerIcon
                 VStack(alignment: .leading, spacing: 2) {
                     Text(content.title)
-                        .font(.custom("PingFang SC", size: 16))
-                        .fontWeight(.semibold)
+                        .font(AppFont.display(16, weight: .semibold))
                         .foregroundStyle(el.primaryTextColor)
                     Text(content.subtitle)
-                        .font(.custom("PingFang SC", size: 12))
+                        .font(AppFont.ui(12))
                         .tracking(1)
                         .foregroundStyle(el.secondaryTextColor)
                 }
@@ -61,7 +60,7 @@ struct ModuleDetailCard: View {
             Spacer()
             Button(action: onClose) {
                 Image(systemName: "xmark")
-                    .font(.system(size: 12, weight: .medium))
+                    .font(AppFont.ui(12, weight: .medium))
                     .foregroundStyle(el.secondaryTextColor)
                     .frame(width: 28, height: 28)
                     .background(Circle().fill(el.isLightBackground ? .black.opacity(0.06) : .white.opacity(0.10)))
@@ -82,12 +81,12 @@ struct ModuleDetailCard: View {
             ForEach(Array(content.items.enumerated()), id: \.offset) { i, item in
                 HStack(alignment: .center, spacing: 10) {
                     Text("\(i + 1)")
-                        .font(.system(size: 11, weight: .bold))
+                        .font(AppFont.ui(11, weight: .bold))
                         .foregroundStyle(module.color)
                         .frame(width: 20, height: 20)
                         .background(Circle().fill(module.color.opacity(0.2)))
                     Text(item)
-                        .font(.custom("PingFang SC", size: 14))
+                        .font(AppFont.narrative(14))
                         .tracking(0.5)
                         .foregroundStyle(module.element.primaryTextColor)
                         .fixedSize(horizontal: false, vertical: true)
@@ -100,10 +99,10 @@ struct ModuleDetailCard: View {
     private var tipRow: some View {
         HStack(spacing: 8) {
             Image(systemName: "lightbulb")
-                .font(.system(size: 13, weight: .light))
+                .font(AppFont.ui(13, weight: .light))
                 .foregroundStyle(Color(hex: 0xFFD54F))
             Text(content.tip)
-                .font(.custom("PingFang SC", size: 13))
+                .font(AppFont.narrative(13))
                 .tracking(0.5)
                 .foregroundStyle(module.element.secondaryTextColor)
                 .italic()

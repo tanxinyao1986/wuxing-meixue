@@ -59,10 +59,9 @@ struct DailyGuideContainerView: View {
         } label: {
             HStack(spacing: 5) {
                 Image(systemName: "arrow.uturn.backward")
-                    .font(.system(size: 12, weight: .medium))
+                    .font(AppFont.ui(12, weight: .medium))
                 Text("今天")
-                    .font(.custom("PingFang SC", size: 13))
-                    .fontWeight(.medium)
+                    .font(AppFont.ui(13, weight: .medium))
             }
             .foregroundStyle(viewModel.currentDayInfo.element.primaryTextColor)
             .padding(.horizontal, 14)

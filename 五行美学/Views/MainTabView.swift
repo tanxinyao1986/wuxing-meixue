@@ -73,10 +73,10 @@ struct MainTabView: View {
         } label: {
             HStack(spacing: 6) {
                 Image(systemName: tab == .daily ? "sun.and.horizon" : "calendar")
-                    .font(.system(size: 16, weight: isSelected ? .semibold : .regular))
+                    .font(AppFont.ui(16, weight: isSelected ? .semibold : .regular))
 
                 Text(tab.rawValue)
-                    .font(.system(size: 14, weight: isSelected ? .semibold : .medium))
+                    .font(AppFont.ui(14, weight: isSelected ? .semibold : .medium))
             }
             .foregroundStyle(isSelected ? Color.white : element.iconTintColor)
             .padding(.horizontal, 18)

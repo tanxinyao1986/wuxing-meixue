@@ -18,7 +18,7 @@ struct DailyGuideView: View {
             let isExpanded = viewModel.expandedModule != nil
             let sphereCenterY = geo.size.height * 0.30
             // 弧线起始 Y = 光球底边 + 间隔 (光球激进缩小后调整)
-            let arcTopY = sphereCenterY + 120 + 15   // 光球半径 120 + 15pt 间距
+            let arcTopY = sphereCenterY + 120 + 27   // 光球半径 120 + 27pt 间距（模块圈下移）
 
             ZStack {
                 // ── 1. 背景 ──
@@ -48,7 +48,7 @@ struct DailyGuideView: View {
                     count: viewModel.modules.count,
                     screenWidth: geo.size.width,
                     arcTopY: arcTopY,
-                    depth: 48
+                    depth: 64
                 )
                 ForEach(Array(viewModel.modules.enumerated()), id: \.element.id) { idx, mod in
                     ModuleIconView(
@@ -84,7 +84,7 @@ struct DailyGuideView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .sheet(isPresented: $viewModel.showElementExplanation) {
-            ElementExplanationSheet(element: viewModel.currentDayInfo.element)
+            ElementExplanationSheet(dayInfo: viewModel.currentDayInfo)
                 .presentationDetents([.medium, .large])
                 .presentationDragIndicator(.visible)
                 .presentationBackground(.ultraThinMaterial)

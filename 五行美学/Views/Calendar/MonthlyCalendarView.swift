@@ -51,7 +51,7 @@ struct MonthlyCalendarView: View {
                         }
                     } label: {
                         Text("今天")
-                            .font(.system(size: 15, weight: .medium))
+                            .font(AppFont.ui(15, weight: .medium))
                             .foregroundStyle(viewModel.currentDayInfo.element.color)
                     }
                     .accessibilityLabel("跳转到今天")
@@ -73,7 +73,7 @@ struct MonthlyCalendarView: View {
                         .fill(.ultraThinMaterial)
                         .frame(width: 40, height: 40)
                     Image(systemName: "chevron.left")
-                        .font(.system(size: 14, weight: .semibold))
+                        .font(AppFont.ui(14, weight: .semibold))
                         .foregroundStyle(viewModel.currentDayInfo.element.secondaryTextColor)
                 }
             }
@@ -82,7 +82,7 @@ struct MonthlyCalendarView: View {
             Spacer()
 
             Text(monthYearString)
-                .font(.system(size: 20, weight: .bold))
+                .font(AppFont.display(20, weight: .bold))
                 .foregroundStyle(viewModel.currentDayInfo.element.primaryTextColor)
 
             Spacer()
@@ -97,7 +97,7 @@ struct MonthlyCalendarView: View {
                         .fill(.ultraThinMaterial)
                         .frame(width: 40, height: 40)
                     Image(systemName: "chevron.right")
-                        .font(.system(size: 14, weight: .semibold))
+                        .font(AppFont.ui(14, weight: .semibold))
                         .foregroundStyle(viewModel.currentDayInfo.element.secondaryTextColor)
                 }
             }
@@ -124,7 +124,7 @@ struct MonthlyCalendarView: View {
                         .shadow(color: element.calendarDotColor.opacity(0.5), radius: 2, x: 0, y: 1)
 
                     Text(element.rawValue)
-                        .font(.system(size: 11, weight: .medium))
+                        .font(AppFont.ui(11, weight: .medium))
                         .foregroundStyle(viewModel.currentDayInfo.element.subtleTextColor)
                 }
             }
@@ -172,7 +172,7 @@ struct MonthlyCalendarView: View {
         HStack(spacing: 0) {
             ForEach(weekdaySymbols, id: \.self) { symbol in
                 Text(symbol)
-                    .font(.system(size: 12, weight: .bold))
+                    .font(AppFont.ui(12, weight: .bold))
                     .foregroundStyle(viewModel.currentDayInfo.element.subtleTextColor)
                     .frame(maxWidth: .infinity)
             }

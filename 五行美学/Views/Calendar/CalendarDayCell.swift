@@ -15,12 +15,12 @@ struct CalendarDayCell: View {
         VStack(spacing: 3) {
             // 公历日期
             Text("\(calendar.component(.day, from: date))")
-                .font(.system(size: scaledFontSize(base: 17), weight: isToday ? .bold : .medium))
+                .font(AppFont.display(scaledFontSize(base: 17), weight: isToday ? .bold : .medium))
                 .foregroundStyle(textColor)
 
             // 农历日期
             Text(LunarCalendar.shortLunarString(for: date))
-                .font(.system(size: scaledFontSize(base: 9)))
+                .font(AppFont.ui(scaledFontSize(base: 9)))
                 .foregroundStyle(lunarTextColor)
                 .lineLimit(1)
                 .minimumScaleFactor(0.7)

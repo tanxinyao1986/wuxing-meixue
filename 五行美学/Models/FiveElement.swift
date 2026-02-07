@@ -11,12 +11,9 @@ enum FiveElement: String, CaseIterable, Identifiable {
     var id: String { rawValue }
 
     // MARK: - 智能背景分类
-    /// 木、土、金 Mesh 整体偏亮 → 文字用深色；火、水 整体偏深 → 文字用白色
+    /// 所有元素的详情卡片都使用毛玻璃效果，统一使用深色文字
     var isLightBackground: Bool {
-        switch self {
-        case .wood, .fire, .earth, .metal: return true
-        case .water:                return false
-        }
+        return true  // 统一使用深色文字，适配毛玻璃卡片背景
     }
 
     // MARK: - 智能文字色 (随背景明暗自动切换)

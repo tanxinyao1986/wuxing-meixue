@@ -47,65 +47,47 @@ enum GuideModule: String, CaseIterable, Identifiable {
     }
 
     /// 模块内容
+    /// 使用 ContentLoader 从 JSON 数据中获取基于日期的伪随机内容
     func content(for dayInfo: DayInfo) -> ModuleContent {
+        let loader = ContentLoader.shared
+        let mainContent = loader.getContent(for: dayInfo.element, module: self, date: dayInfo.date)
+        let keywords = loader.getKeywords(for: dayInfo.element)
+        let keywordsText = keywords.isEmpty ? "" : keywords.joined(separator: "·")
+
         switch self {
         case .dress:
             return ModuleContent(
                 title: "今日能量着装",
-                subtitle: "与 \(dayInfo.element.rawValue) 气共振",
-                items: [
-                    "主色调：\(dayInfo.element.rawValue) 系柔和色彩",
-                    "推荐款式：舒适自然的剪裁",
-                    "配饰建议：简约而有质感",
-                    "材质推荐：天然纤维面料"
-                ],
+                subtitle: "与\(dayInfo.element.rawValue)气共振",
+                items: [mainContent],
                 tip: "穿着能量色，让外在与内在和谐共振。"
             )
         case .food:
             return ModuleContent(
                 title: "今日顺时食饮",
-                subtitle: "滋养身心的选择",
-                items: [
-                    "晨起：温水唤醒身体",
-                    "早餐：均衡营养开启一天",
-                    "午餐：适量进食，不过饱",
-                    "晚餐：清淡为主，早食为宜"
-                ],
+                subtitle: keywordsText.isEmpty ? "滋养身心的选择" : keywordsText,
+                items: [mainContent],
                 tip: "顺应时节，让食物成为身体的良药。"
             )
         case .space:
             return ModuleContent(
                 title: "今日身心空间",
                 subtitle: "创造滋养的环境",
-                items: [
-                    "整理桌面，清理杂物",
-                    "开窗通风，让能量流动",
-                    "点一支清香或摆放绿植",
-                    "调整灯光至舒适亮度"
-                ],
+                items: [mainContent],
                 tip: "外在空间的整洁，映射内心的清明。"
             )
         case .action:
             return ModuleContent(
                 title: "今日行动指南",
                 subtitle: "顺势而为的智慧",
-                items: [
-                    "宜：开始新项目、学习新技能",
-                    "宜：与人沟通、表达想法",
-                    "慎：做重大决定前多思考",
-                    "忌：急躁冒进、强求结果"
-                ],
+                items: [mainContent],
                 tip: "行动与等待同样重要，关键在于时机。"
             )
         case .anchor:
             return ModuleContent(
                 title: "今日心念之锚",
                 subtitle: "一句话的力量",
-                items: [
-                    "「此刻，我与自然同频共振。」",
-                    "「我信任生命的节奏。」",
-                    "「每一步都是最好的安排。」"
-                ],
+                items: [mainContent],
                 tip: "当心绪不宁时，回到这句话，找到内心的锚点。"
             )
         }

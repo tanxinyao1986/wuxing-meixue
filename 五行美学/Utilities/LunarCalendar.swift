@@ -7,6 +7,12 @@ struct LunarCalendar {
         calendar.locale = Locale(identifier: "zh_CN")
         return calendar
     }()
+    private static let gregorianCalendar: Calendar = {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.locale = Locale(identifier: "zh_CN")
+        calendar.timeZone = TimeZone.current
+        return calendar
+    }()
 
     private static let lunarMonths = [
         "正月", "二月", "三月", "四月", "五月", "六月",
@@ -21,6 +27,19 @@ struct LunarCalendar {
 
     private static let heavenlyStems = ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"]
     private static let earthlyBranches = ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"]
+    /// 干支日计算基准（需与开源万年历库对齐校准）
+    /// 校准：1986-01-30 为 甲戌日、2026-02-07 为 壬子日，对应基准日 1986-01-20 为 甲子日（索引 0）。
+    /// 如需再次校准，只需修改此基准日期。
+    private static let ganzhiBaseDate: Date = {
+        var components = DateComponents()
+        components.calendar = gregorianCalendar
+        components.timeZone = TimeZone.current
+        components.year = 1986
+        components.month = 1
+        components.day = 20
+        return gregorianCalendar.date(from: components) ?? Date(timeIntervalSince1970: 0)
+    }()
+    private static let ganzhiBaseIndex = 0
 
     /// 获取农历月份字符串
     static func lunarMonth(for date: Date) -> String {
@@ -65,6 +84,31 @@ struct LunarCalendar {
         let stemIndex = (year - 1) % 10
         let branchIndex = (year - 1) % 12
         return heavenlyStems[stemIndex] + earthlyBranches[branchIndex] + "年"
+    }
+
+    /// 获取干支日（流日）
+    static func ganzhiDay(for date: Date) -> String {
+        let index = ganzhiDayIndex(for: date)
+        let stemIndex = index % 10
+        let branchIndex = index % 12
+        return heavenlyStems[stemIndex] + earthlyBranches[branchIndex]
+    }
+
+    /// 获取干支日的地支
+    static func dayBranch(for date: Date) -> String {
+        let index = ganzhiDayIndex(for: date)
+        let branchIndex = index % 12
+        return earthlyBranches[branchIndex]
+    }
+
+    /// 干支日索引（0...59）
+    private static func ganzhiDayIndex(for date: Date) -> Int {
+        let start = gregorianCalendar.startOfDay(for: ganzhiBaseDate)
+        let target = gregorianCalendar.startOfDay(for: date)
+        let days = gregorianCalendar.dateComponents([.day], from: start, to: target).day ?? 0
+        let rawIndex = ganzhiBaseIndex + days
+        let normalized = ((rawIndex % 60) + 60) % 60
+        return normalized
     }
 }
 

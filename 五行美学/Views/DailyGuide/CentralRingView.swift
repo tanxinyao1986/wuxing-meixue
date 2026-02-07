@@ -89,21 +89,20 @@ struct CentralRingView: View {
         VStack(spacing: 3) {
             // 大日期数字 — Serif Light，纯白
             Text(dayInfo.gregorianDateString)
-                .font(.system(size: 58, weight: .light, design: .serif))
+                .font(AppFont.display(58, weight: .light))
                 .foregroundStyle(.white)
                 .shadow(color: .black.opacity(0.25), radius: 4, x: 0, y: 2)
 
             // 农历 — PingFang SC + tracking
             Text(LunarCalendar.lunarDateString(for: dayInfo.date))
-                .font(.custom("PingFang SC", size: 12))
+                .font(AppFont.ui(12))
                 .tracking(2)
                 .foregroundStyle(.white.opacity(0.75))
                 .shadow(color: .black.opacity(0.20), radius: 3, x: 0, y: 1)
 
             // 核心关键词 — 24pt Bold 纯白
             Text(dayInfo.mainKeyword)
-                .font(.custom("PingFang SC", size: 24))
-                .fontWeight(.bold)
+                .font(AppFont.calligraphy(26, weight: .semibold))
                 .tracking(2)
                 .foregroundStyle(.white)
                 .shadow(color: .black.opacity(0.30), radius: 5, x: 0, y: 2)

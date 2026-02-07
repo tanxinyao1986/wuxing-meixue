@@ -24,13 +24,23 @@ struct ModuleIconView: View {
         Double(index) * 0.25  // 每个图标延迟 0.25s
     }
 
+    /// 中心模块轻微上浮，增强层级与动势
+    private var centerLift: CGFloat {
+        let distance = abs(index - 2)
+        switch distance {
+        case 0: return -4
+        case 1: return -2
+        default: return 0
+        }
+    }
+
     var body: some View {
         VStack(spacing: 6) {
             iconCircle
             label
         }
         .position(position)
-        .offset(y: floatingOffset)
+        .offset(y: floatingOffset + centerLift)
         .opacity(isOtherSelected ? 0.35 : 1.0)
         .animation(.easeInOut(duration: 0.35), value: isOtherSelected)
         .onAppear {
@@ -110,10 +120,17 @@ struct ModuleIconView: View {
     // MARK: - 模块名 (智能颜色)
     private var label: some View {
         Text(module.rawValue)
-            .font(.custom("PingFang SC", size: 13))
+            .font(AppFont.ui(13))
             .tracking(1)
             .foregroundStyle(labelColor)
-            .shadow(color: currentElement == .metal ? .clear : .black.opacity(0.25), radius: 2, x: 0, y: 1)
+            .padding(.horizontal, 10)
+            .padding(.vertical, 4)
+            .background(
+                Capsule()
+                    .fill(.ultraThinMaterial)
+                    .opacity(0.12)
+            )
+            .shadow(color: .black.opacity(0.18), radius: 1.5, x: 0, y: 0.5)
     }
 }
 
