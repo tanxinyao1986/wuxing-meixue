@@ -10,11 +10,29 @@ enum FiveElement: String, CaseIterable, Identifiable {
 
     var id: String { rawValue }
 
-    // MARK: - 智能背景分类
-    /// 所有元素的详情卡片都使用毛玻璃效果，统一使用深色文字
-    var isLightBackground: Bool {
-        return true  // 统一使用深色文字，适配毛玻璃卡片背景
+    /// 本地化显示名称（UI 展示用，rawValue 保持不变用于 JSON key 和内部逻辑）
+    var displayName: String {
+        switch self {
+        case .wood:  return String(localized: "木")
+        case .fire:  return String(localized: "火")
+        case .earth: return String(localized: "土")
+        case .metal: return String(localized: "金")
+        case .water: return String(localized: "水")
+        }
     }
+
+    // MARK: - 智能背景分类
+    /// 元素主色是否为浅色系（金、土为浅色）
+    var isLightBackground: Bool {
+        switch self {
+        case .metal, .earth: return true
+        case .wood, .fire, .water: return false
+        }
+    }
+
+    // MARK: - 毛玻璃卡片专用文字色（卡片上统一深色文字）
+    var cardPrimaryTextColor: Color { Color(hex: 0x2C2C2E) }
+    var cardSecondaryTextColor: Color { Color(hex: 0x636366) }
 
     // MARK: - 智能文字色 (随背景明暗自动切换)
     var primaryTextColor: Color {
@@ -24,7 +42,7 @@ enum FiveElement: String, CaseIterable, Identifiable {
         isLightBackground ? Color(hex: 0x636366) : .white.opacity(0.6)
     }
     var subtleTextColor: Color {
-        isLightBackground ? Color(hex: 0x8E8E93) : .white.opacity(0.40)
+        isLightBackground ? Color(hex: 0x6E6E73) : .white.opacity(0.55)
     }
     /// 图标未选中色
     var iconTintColor: Color {
@@ -153,70 +171,70 @@ enum FiveElement: String, CaseIterable, Identifiable {
     var explanation: String {
         switch self {
         case .wood:
-            return """
+            return String(localized: """
             【木】生发之气
 
-            木主生长、舒展、条达。今日木气当令，万物萌发，适宜：
+            木主生长、舒展、条达。以木之意象为引，可作为今日的生活提醒：
 
             • 开始新的计划与项目
             • 学习新知识、拓展视野
             • 户外活动，亲近自然
             • 表达创意，展现自我
 
-            情志宜疏，忌郁结。保持心情舒畅，让生命能量自然流动。
-            """
+            情志宜疏，少郁结。保持心情舒畅，让生命能量自然流动。
+            """)
         case .fire:
-            return """
+            return String(localized: """
             【火】明亮之气
 
-            火主热情、光明、向上。今日火气当令，心神明亮，适宜：
+            火主热情、光明、向上。以火之意象为引，可作为今日的生活提醒：
 
             • 社交活动，增进感情
             • 演讲表达，展现魅力
             • 艺术创作，激发灵感
             • 重要决策，明辨是非
 
-            情志宜喜，忌躁。让内心的热情温暖他人，而非灼伤自己。
-            """
+            情志宜喜，少躁。让内心的热情温暖他人，而非灼伤自己。
+            """)
         case .earth:
-            return """
+            return String(localized: """
             【土】承载之气
 
-            土主稳重、包容、滋养。今日土气当令，厚德载物，适宜：
+            土主稳重、包容、滋养。以土之意象为引，可作为今日的生活提醒：
 
             • 整理空间，归纳物品
             • 照顾家人，关怀他人
             • 反思总结，沉淀经验
             • 饮食养生，调理脾胃
 
-            情志宜思，忌虑。在稳定中找到力量，在包容中获得智慧。
-            """
+            情志宜思，少虑。在稳定中找到力量，在包容中获得智慧。
+            """)
         case .metal:
-            return """
+            return String(localized: """
             【金】收敛之气
 
-            金主肃杀、决断、精纯。今日金气当令，去芜存菁，适宜：
+            金主肃杀、决断、精纯。以金之意象为引，可作为今日的生活提醒：
 
             • 断舍离，清理不需要的事物
             • 完成收尾工作
             • 精简流程，提高效率
             • 冥想静心，内观自省
 
-            情志宜收，忌悲。学会放下，在减法中找到生命的本质。
-            """
+            情志宜收，少悲。学会放下，在减法中找到生命的本质。
+            """)
         case .water:
-            return """
+            return String(localized: """
             【水】蛰藏之气
 
-            水主智慧、柔韧、潜藏。今日水气当令，静水流深，适宜：
+            水主智慧、柔韧、潜藏。以水之意象为引，可作为今日的生活提醒：
 
             • 阅读思考，汲取智慧
             • 休息养神，储备能量
             • 倾听他人，理解包容
             • 随机应变，顺势而为
 
-            情志宜静，忌恐。像水一样柔软而有力量，适应任何环境。
-            """
+            情志宜静，少恐。像水一样柔软而有力量，适应任何环境。
+            """)
         }
     }
 }

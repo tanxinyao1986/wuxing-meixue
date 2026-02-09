@@ -5,18 +5,74 @@ struct ModuleDetailCard: View {
     let module: GuideModule
     let content: ModuleContent
     let onClose: () -> Void
+    var isLocked: Bool = false
+    var onUnlock: (() -> Void)? = nil
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             headerRow
             divider
-            itemsList
-            if !content.tip.isEmpty { tipRow }
+            if isLocked {
+                lockedContent
+            } else {
+                itemsList
+                if !content.tip.isEmpty { tipRow }
+            }
         }
         .padding(20)
         .background(cardBG)
         .accessibilityElement(children: .contain)
-        .accessibilityLabel("\(module.rawValue)详情")
+        .accessibilityLabel("\(module.displayName)\(String(localized: "详情"))")
+    }
+
+    // MARK: - 锁定内容（模糊 + 解锁按钮）
+    private var lockedContent: some View {
+        ZStack {
+            // 模糊的内容预览
+            VStack(alignment: .leading, spacing: 12) {
+                ForEach(Array(content.items.enumerated()), id: \.offset) { i, item in
+                    HStack(alignment: .center, spacing: 10) {
+                        Text("\(i + 1)")
+                            .font(AppFont.ui(11, weight: .bold))
+                            .foregroundStyle(module.color)
+                            .frame(width: 20, height: 20)
+                            .background(Circle().fill(module.color.opacity(0.2)))
+                        Text(item)
+                            .font(AppFont.narrative(14))
+                            .tracking(0.5)
+                            .foregroundStyle(module.element.cardPrimaryTextColor)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                }
+            }
+            .blur(radius: 6)
+            .allowsHitTesting(false)
+
+            // 解锁按钮
+            VStack(spacing: 10) {
+                Image(systemName: "lock.fill")
+                    .font(.system(size: 22))
+                    .foregroundStyle(module.color)
+                Button {
+                    onUnlock?()
+                } label: {
+                    Text("解锁完整内容")
+                        .font(AppFont.ui(14, weight: .semibold))
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 10)
+                        .background(
+                            Capsule().fill(
+                                LinearGradient(
+                                    colors: [module.color, module.color.opacity(0.7)],
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
+                        )
+                }
+            }
+        }
     }
 
     // MARK: - Header Icon
@@ -50,22 +106,22 @@ struct ModuleDetailCard: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(content.title)
                         .font(AppFont.display(16, weight: .semibold))
-                        .foregroundStyle(el.primaryTextColor)
+                        .foregroundStyle(el.cardPrimaryTextColor)
                     Text(content.subtitle)
                         .font(AppFont.ui(12))
                         .tracking(1)
-                        .foregroundStyle(el.secondaryTextColor)
+                        .foregroundStyle(el.cardSecondaryTextColor)
                 }
             }
             Spacer()
             Button(action: onClose) {
                 Image(systemName: "xmark")
                     .font(AppFont.ui(12, weight: .medium))
-                    .foregroundStyle(el.secondaryTextColor)
+                    .foregroundStyle(el.cardSecondaryTextColor)
                     .frame(width: 28, height: 28)
-                    .background(Circle().fill(el.isLightBackground ? .black.opacity(0.06) : .white.opacity(0.10)))
+                    .background(Circle().fill(.black.opacity(0.06)))
             }
-            .accessibilityLabel("关闭")
+            .accessibilityLabel(String(localized: "关闭"))
         }
     }
 
@@ -88,7 +144,7 @@ struct ModuleDetailCard: View {
                     Text(item)
                         .font(AppFont.narrative(14))
                         .tracking(0.5)
-                        .foregroundStyle(module.element.primaryTextColor)
+                        .foregroundStyle(module.element.cardPrimaryTextColor)
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }
@@ -104,7 +160,7 @@ struct ModuleDetailCard: View {
             Text(content.tip)
                 .font(AppFont.narrative(13))
                 .tracking(0.5)
-                .foregroundStyle(module.element.secondaryTextColor)
+                .foregroundStyle(module.element.cardSecondaryTextColor)
                 .italic()
         }
         .padding(.horizontal, 12)
@@ -125,7 +181,7 @@ struct ModuleDetailCard: View {
             .fill(.ultraThinMaterial)
             .overlay(
                 RoundedRectangle(cornerRadius: 20)
-                    .stroke(module.element.isLightBackground ? Color.black.opacity(0.10) : Color.white.opacity(0.12), lineWidth: 0.6)
+                    .stroke(Color.black.opacity(0.10), lineWidth: 0.6)
             )
             .shadow(color: .black.opacity(0.18), radius: 16, x: 0, y: 8)
     }

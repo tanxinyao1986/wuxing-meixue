@@ -10,6 +10,17 @@ enum GuideModule: String, CaseIterable, Identifiable {
 
     var id: String { rawValue }
 
+    /// 本地化显示名称（UI 展示用，rawValue 保持不变用于内部标识）
+    var displayName: String {
+        switch self {
+        case .dress:  return String(localized: "能量着装")
+        case .food:   return String(localized: "顺时食饮")
+        case .space:  return String(localized: "身心空间")
+        case .action: return String(localized: "行动指南")
+        case .anchor: return String(localized: "心念之锚")
+        }
+    }
+
     /// 对应五行
     var element: FiveElement {
         switch self {
@@ -48,11 +59,11 @@ enum GuideModule: String, CaseIterable, Identifiable {
     /// VoiceOver
     var accessibilityLabel: String {
         switch self {
-        case .dress:  return "能量着装，木元素，点击查看今日穿搭建议"
-        case .food:   return "顺时食饮，火元素，点击查看今日饮食建议"
-        case .space:  return "身心空间，土元素，点击查看今日空间建议"
-        case .action: return "行动指南，金元素，点击查看今日行动建议"
-        case .anchor: return "心念之锚，水元素，点击查看今日心念建议"
+        case .dress:  return String(localized: "能量着装，木元素，点击查看今日穿搭建议")
+        case .food:   return String(localized: "顺时食饮，火元素，点击查看今日饮食建议")
+        case .space:  return String(localized: "身心空间，土元素，点击查看今日空间建议")
+        case .action: return String(localized: "行动指南，金元素，点击查看今日行动建议")
+        case .anchor: return String(localized: "心念之锚，水元素，点击查看今日心念建议")
         }
     }
 
@@ -67,38 +78,38 @@ enum GuideModule: String, CaseIterable, Identifiable {
         switch self {
         case .dress:
             return ModuleContent(
-                title: "今日能量着装",
-                subtitle: "与\(dayInfo.element.rawValue)气共振",
+                title: String(localized: "今日能量着装"),
+                subtitle: String(localized: "与\(dayInfo.element.displayName)气共振"),
                 items: [mainContent],
-                tip: "穿着能量色，让外在与内在和谐共振。"
+                tip: String(localized: "穿着能量色，让外在与内在和谐共振。")
             )
         case .food:
             return ModuleContent(
-                title: "今日顺时食饮",
-                subtitle: keywordsText.isEmpty ? "滋养身心的选择" : keywordsText,
+                title: String(localized: "今日顺时食饮"),
+                subtitle: keywordsText.isEmpty ? String(localized: "滋养身心的选择") : keywordsText,
                 items: [mainContent],
-                tip: "顺应时节，让食物成为身体的良药。"
+                tip: String(localized: "顺应时节，让食物成为身体的良药。")
             )
         case .space:
             return ModuleContent(
-                title: "今日身心空间",
-                subtitle: "创造滋养的环境",
+                title: String(localized: "今日身心空间"),
+                subtitle: String(localized: "创造滋养的环境"),
                 items: [mainContent],
-                tip: "外在空间的整洁，映射内心的清明。"
+                tip: String(localized: "外在空间的整洁，映射内心的清明。")
             )
         case .action:
             return ModuleContent(
-                title: "今日行动指南",
-                subtitle: "顺势而为的智慧",
+                title: String(localized: "今日行动指南"),
+                subtitle: String(localized: "顺势而为的智慧"),
                 items: [mainContent],
-                tip: "行动与等待同样重要，关键在于时机。"
+                tip: String(localized: "行动与等待同样重要，关键在于时机。")
             )
         case .anchor:
             return ModuleContent(
-                title: "今日心念之锚",
-                subtitle: "一句话的力量",
+                title: String(localized: "今日心念之锚"),
+                subtitle: String(localized: "一句话的力量"),
                 items: [mainContent],
-                tip: "当心绪不宁时，回到这句话，找到内心的锚点。"
+                tip: String(localized: "当心绪不宁时，回到这句话，找到内心的锚点。")
             )
         }
     }

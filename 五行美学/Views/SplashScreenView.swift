@@ -1,24 +1,17 @@
 import SwiftUI
 
-/// 开屏动画 —【混沌初开 · 气韵生发】v3
-/// 图片已更新为透明底太极图，去除 .multiply 扣底
-/// 太极放大至 300pt，动画总时长延长至 ~4s，让用户充分感受
+/// 开屏动画 —【混沌初开 · 气韵生发】v4 (内存优化版)
+/// 优化点：降低 blur 半径、减少爆发倍率、使用 drawingGroup 减少 GPU 离屏渲染
 /// 时间轴：凝聚(0-1s) → 蕴育(1-3s) → 觉醒爆发(3-4s)
 struct SplashScreenView: View {
 
     // MARK: - 动画状态
 
-    /// 太极图从无到有的出场
     @State private var taiChiAppeared = false
-    /// 水墨光斑呼吸缩放
     @State private var breathing = false
-    /// 水墨光斑整体旋转角度
     @State private var orbRotation: Double = 0
-    /// Slogan 可见
     @State private var sloganVisible = false
-    /// 爆发：15x 扩散 + 消隐
     @State private var burstTriggered = false
-    /// 太极自转角度
     @State private var taiChiAngle: Double = 0
 
     var body: some View {
@@ -30,7 +23,7 @@ struct SplashScreenView: View {
             inkFlowLayer
                 .blendMode(.multiply)
                 .rotationEffect(.degrees(orbRotation))
-                .scaleEffect(burstTriggered ? 15.0 : 1.0)
+                .scaleEffect(burstTriggered ? 5.0 : 1.0)
                 .opacity(burstTriggered ? 0.0 : 1.0)
 
             // ═══ Layer 2: 太极 + Slogan ═══
@@ -63,7 +56,7 @@ struct SplashScreenView: View {
     ]
 
     private var inkFlowLayer: some View {
-        let scale: CGFloat = breathing ? 1.2 : 1.0
+        let scale: CGFloat = breathing ? 1.15 : 1.0
 
         return ZStack {
             ForEach(0..<5, id: \.self) { i in
@@ -72,8 +65,8 @@ struct SplashScreenView: View {
 
                 Circle()
                     .fill(Self.inkColors[i])
-                    .frame(width: 240, height: 240)
-                    .blur(radius: 90)
+                    .frame(width: 220, height: 220)
+                    .blur(radius: 55)
                     .offset(
                         x: cos(angle) * radius,
                         y: sin(angle) * radius
@@ -87,7 +80,6 @@ struct SplashScreenView: View {
 
     private var seedLayer: some View {
         VStack(spacing: 24) {
-            // 太极图 — 透明底图片，放大至 300pt
             Image("TaiChiSymbol")
                 .resizable()
                 .scaledToFit()
@@ -96,7 +88,6 @@ struct SplashScreenView: View {
                 .opacity(taiChiAppeared ? 0.88 : 0.0)
                 .scaleEffect(taiChiAppeared ? 1.0 : 0.3)
 
-            // Slogan
             Text("流转 · 平衡")
                 .font(AppFont.calligraphy(20, weight: .light))
                 .tracking(8)
@@ -130,12 +121,12 @@ struct SplashScreenView: View {
             orbRotation = 360
         }
 
-        // ── Slogan 淡入 (0.8s 延迟，太极出现后再显示) ──
+        // ── Slogan 淡入 (0.8s 延迟) ──
         withAnimation(.easeOut(duration: 0.8).delay(0.8)) {
             sloganVisible = true
         }
 
-        // ── Phase 3 觉醒爆发 (3.0s): 15x 穿云 + 消隐 ──
+        // ── Phase 3 觉醒爆发 (3.0s): 5x 穿云 + 消隐 ──
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             HapticManager.bloom()
             withAnimation(.easeIn(duration: 0.7)) {

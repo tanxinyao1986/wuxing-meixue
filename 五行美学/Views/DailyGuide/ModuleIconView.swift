@@ -62,27 +62,23 @@ struct ModuleIconView: View {
     // MARK: - 智能图标/文字颜色
     /// 金 (Metal) 背景为银白色，需要深色文字；其他保持白色体系
     private var iconColor: Color {
-        if currentElement == .metal {
-            // 金：深灰色体系
+        if currentElement.isLightBackground {
             return isSelected ? Color.white : Color(hex: 0x333333).opacity(0.6)
         } else {
-            // 其他五行：白色体系
             return isSelected ? Color.white : Color.white.opacity(0.70)
         }
     }
 
     private var labelColor: Color {
-        if currentElement == .metal {
-            // 金：深灰色体系
+        if currentElement.isLightBackground {
             return isSelected ? Color(hex: 0x333333) : Color(hex: 0x333333).opacity(0.6)
         } else {
-            // 其他五行：白色体系
             return isSelected ? Color.white : Color.white.opacity(0.70)
         }
     }
 
     private var strokeColor: Color {
-        if currentElement == .metal {
+        if currentElement.isLightBackground {
             return isSelected ? Color.clear : Color(hex: 0x333333).opacity(0.20)
         } else {
             return isSelected ? Color.clear : Color.white.opacity(0.25)
@@ -119,8 +115,8 @@ struct ModuleIconView: View {
 
     // MARK: - 模块名 (智能颜色)
     private var label: some View {
-        Text(module.rawValue)
-            .font(AppFont.ui(13))
+        Text(module.displayName)
+            .font(AppFont.ui(12, weight: currentElement.isLightBackground ? .semibold : .medium))
             .tracking(1)
             .foregroundStyle(labelColor)
             .padding(.horizontal, 10)

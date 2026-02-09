@@ -6,16 +6,28 @@ struct MonthlyCalendarView: View {
     @Binding var selectedTab: MainTabView.Tab
 
     @State private var displayedMonth: Date = Date()
+    @State private var showPaywall = false
+    @State private var showSettings = false
+    @StateObject private var accessManager = FeatureAccessManager.shared
 
     private let calendar = Calendar.current
-    private let weekdaySymbols = ["日", "一", "二", "三", "四", "五", "六"]
+    private var weekdaySymbols: [String] {
+        let symbols = Calendar.current.veryShortWeekdaySymbols
+        // veryShortWeekdaySymbols 已根据当前 locale 自动本地化
+        return symbols
+    }
     private let columns = Array(repeating: GridItem(.flexible(), spacing: 4), count: 7)
 
     var body: some View {
         NavigationStack {
             ZStack {
-                // 底层：继承今日界面的五行背景色
-                ElementMeshBackground(element: viewModel.currentDayInfo.element)
+                // 底层：静态渐变背景（避免三层模糊叠加的性能开销）
+                LinearGradient(
+                    colors: [viewModel.currentDayInfo.element.meshMidColor,
+                             viewModel.currentDayInfo.element.meshHighlightColor],
+                    startPoint: .topLeading, endPoint: .bottomTrailing
+                )
+                .ignoresSafeArea()
 
                 // 中层：白色磨砂覆盖层
                 Rectangle()
@@ -43,6 +55,16 @@ struct MonthlyCalendarView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        showSettings = true
+                    } label: {
+                        Image(systemName: "gearshape")
+                            .font(AppFont.ui(16, weight: .medium))
+                            .foregroundStyle(viewModel.currentDayInfo.element.iconTintColor)
+                    }
+                    .accessibilityLabel("设置")
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
@@ -56,6 +78,12 @@ struct MonthlyCalendarView: View {
                     }
                     .accessibilityLabel("跳转到今天")
                 }
+            }
+            .sheet(isPresented: $showPaywall) {
+                PaywallView()
+            }
+            .sheet(isPresented: $showSettings) {
+                SettingsView()
             }
         }
     }
@@ -74,7 +102,7 @@ struct MonthlyCalendarView: View {
                         .frame(width: 40, height: 40)
                     Image(systemName: "chevron.left")
                         .font(AppFont.ui(14, weight: .semibold))
-                        .foregroundStyle(viewModel.currentDayInfo.element.secondaryTextColor)
+                        .foregroundStyle(viewModel.currentDayInfo.element.cardSecondaryTextColor)
                 }
             }
             .accessibilityLabel("上一个月")
@@ -83,7 +111,7 @@ struct MonthlyCalendarView: View {
 
             Text(monthYearString)
                 .font(AppFont.display(20, weight: .bold))
-                .foregroundStyle(viewModel.currentDayInfo.element.primaryTextColor)
+                .foregroundStyle(viewModel.currentDayInfo.element.cardPrimaryTextColor)
 
             Spacer()
 
@@ -98,7 +126,7 @@ struct MonthlyCalendarView: View {
                         .frame(width: 40, height: 40)
                     Image(systemName: "chevron.right")
                         .font(AppFont.ui(14, weight: .semibold))
-                        .foregroundStyle(viewModel.currentDayInfo.element.secondaryTextColor)
+                        .foregroundStyle(viewModel.currentDayInfo.element.cardSecondaryTextColor)
                 }
             }
             .accessibilityLabel("下一个月")
@@ -123,9 +151,9 @@ struct MonthlyCalendarView: View {
                         .frame(width: 8, height: 8)
                         .shadow(color: element.calendarDotColor.opacity(0.5), radius: 2, x: 0, y: 1)
 
-                    Text(element.rawValue)
+                    Text(element.displayName)
                         .font(AppFont.ui(11, weight: .medium))
-                        .foregroundStyle(viewModel.currentDayInfo.element.subtleTextColor)
+                        .foregroundStyle(Color(hex: 0x6E6E73))
                 }
             }
         }
@@ -136,7 +164,7 @@ struct MonthlyCalendarView: View {
                 .fill(.ultraThinMaterial)
                 .overlay(
                     Capsule()
-                        .stroke(viewModel.currentDayInfo.element.isLightBackground ? Color.black.opacity(0.12) : Color.white.opacity(0.30), lineWidth: 0.5)
+                        .stroke(Color.black.opacity(0.12), lineWidth: 0.5)
                 )
         )
     }
@@ -156,12 +184,7 @@ struct MonthlyCalendarView: View {
                 .fill(.ultraThinMaterial)
                 .overlay(
                     RoundedRectangle(cornerRadius: 24)
-                        .stroke(
-                            viewModel.currentDayInfo.element.isLightBackground
-                            ? Color.black.opacity(0.10)
-                            : Color.white.opacity(0.20),
-                            lineWidth: 0.8
-                        )
+                        .stroke(Color.black.opacity(0.10), lineWidth: 0.8)
                 )
                 .shadow(color: .black.opacity(0.08), radius: 20, x: 0, y: 10)
         )
@@ -173,7 +196,7 @@ struct MonthlyCalendarView: View {
             ForEach(weekdaySymbols, id: \.self) { symbol in
                 Text(symbol)
                     .font(AppFont.ui(12, weight: .bold))
-                    .foregroundStyle(viewModel.currentDayInfo.element.subtleTextColor)
+                    .foregroundStyle(Color(hex: 0x6E6E73))
                     .frame(maxWidth: .infinity)
             }
         }
@@ -207,8 +230,8 @@ struct MonthlyCalendarView: View {
     // MARK: - Helpers
     private var monthYearString: String {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "zh_CN")
-        formatter.dateFormat = "yyyy年M月"
+        formatter.locale = Locale.current
+        formatter.setLocalizedDateFormatFromTemplate("yyyyMMMM")
         return formatter.string(from: displayedMonth)
     }
 
@@ -243,6 +266,15 @@ struct MonthlyCalendarView: View {
     }
 
     private func selectDate(_ date: Date) {
+        // 检查是否可以访问此日期
+        if !accessManager.canAccessDate(date) {
+            // 免费版：显示付费墙
+            HapticManager.warning()
+            showPaywall = true
+            return
+        }
+
+        // 可以访问：正常选择
         HapticManager.selection()
         viewModel.selectDate(date)
         // 切换到今日Tab

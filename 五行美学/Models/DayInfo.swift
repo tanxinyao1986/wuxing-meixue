@@ -22,24 +22,24 @@ struct DayInfo: Identifiable, Equatable {
     /// 获取公历月份
     var gregorianMonthString: String {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "zh_CN")
-        formatter.dateFormat = "M月"
+        formatter.locale = Locale.current
+        formatter.setLocalizedDateFormatFromTemplate("MMM")
         return formatter.string(from: date)
     }
 
     /// 获取星期
     var weekdayString: String {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "zh_CN")
-        formatter.dateFormat = "EEEE"
+        formatter.locale = Locale.current
+        formatter.setLocalizedDateFormatFromTemplate("EEEE")
         return formatter.string(from: date)
     }
 
     /// 获取完整日期字符串
     var fullDateString: String {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "zh_CN")
-        formatter.dateFormat = "yyyy年M月d日"
+        formatter.locale = Locale.current
+        formatter.setLocalizedDateFormatFromTemplate("yyyyMd")
         return formatter.string(from: date)
     }
 

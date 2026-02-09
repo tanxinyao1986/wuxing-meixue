@@ -12,6 +12,8 @@ import SwiftUI
 ///   └─────────────────────┘
 struct DailyGuideView: View {
     @EnvironmentObject var viewModel: DailyGuideViewModel
+    @StateObject private var accessManager = FeatureAccessManager.shared
+    @State private var showPaywall = false
 
     var body: some View {
         GeometryReader { geo in
@@ -51,17 +53,35 @@ struct DailyGuideView: View {
                     depth: 64
                 )
                 ForEach(Array(viewModel.modules.enumerated()), id: \.element.id) { idx, mod in
-                    ModuleIconView(
-                        module: mod,
-                        isSelected: viewModel.expandedModule == mod,
-                        isOtherSelected: isExpanded && viewModel.expandedModule != mod,
-                        position: positions[idx],
-                        currentElement: viewModel.currentDayInfo.element,
-                        index: idx  // 传递索引用于异步悬浮动画
-                    )
+                    ZStack {
+                        ModuleIconView(
+                            module: mod,
+                            isSelected: viewModel.expandedModule == mod,
+                            isOtherSelected: isExpanded && viewModel.expandedModule != mod,
+                            position: positions[idx],
+                            currentElement: viewModel.currentDayInfo.element,
+                            index: idx  // 传递索引用于异步悬浮动画
+                        )
+
+                        // 锁定标记（免费版）
+                        if !accessManager.canAccessModule(mod) {
+                            VStack {
+                                Spacer()
+                                HStack {
+                                    Spacer()
+                                    Image(systemName: "lock.fill")
+                                        .font(.system(size: 12))
+                                        .foregroundColor(.white)
+                                        .padding(4)
+                                        .background(Circle().fill(Color.black.opacity(0.5)))
+                                }
+                            }
+                            .frame(width: 56, height: 56)
+                            .position(positions[idx])
+                        }
+                    }
                     .onTapGesture {
-                        HapticManager.moduleTap()
-                        viewModel.toggleModule(mod)
+                        handleModuleTap(mod)
                     }
                 }
 
@@ -73,6 +93,11 @@ struct DailyGuideView: View {
                         onClose: {
                             HapticManager.dismiss()
                             viewModel.collapseModule()
+                        },
+                        isLocked: !accessManager.canAccessModule(mod),
+                        onUnlock: {
+                            viewModel.collapseModule()
+                            showPaywall = true
                         }
                     )
                     .frame(maxWidth: geo.size.width - 32)
@@ -89,6 +114,20 @@ struct DailyGuideView: View {
                 .presentationDragIndicator(.visible)
                 .presentationBackground(.ultraThinMaterial)
         }
+        .sheet(isPresented: $showPaywall) {
+            PaywallView()
+        }
+    }
+
+    // MARK: - 模块点击处理
+    private func handleModuleTap(_ module: GuideModule) {
+        if !accessManager.canAccessModule(module) {
+            // 免费版：展开模块但以锁定模式显示（模糊内容+解锁按钮）
+            HapticManager.moduleTap()
+        } else {
+            HapticManager.moduleTap()
+        }
+        viewModel.toggleModule(module)
     }
 
     // MARK: - 极淡左 / 右滑动箭头 (智能色)

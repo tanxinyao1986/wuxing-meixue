@@ -3,7 +3,9 @@ import SwiftUI
 /// 每日指南容器 — 包裹 DailyGuideView，提供左右滑动切换日期手势。
 struct DailyGuideContainerView: View {
     @EnvironmentObject var viewModel: DailyGuideViewModel
+    @StateObject private var accessManager = FeatureAccessManager.shared
     @State private var dragOffset: CGFloat = 0
+    @State private var showPaywall = false
 
     var body: some View {
         GeometryReader { geo in
@@ -35,11 +37,23 @@ struct DailyGuideContainerView: View {
                         let threshold: CGFloat = 50
                         withAnimation(.easeInOut(duration: 0.28)) {
                             if value.translation.width > threshold || value.predictedEndTranslation.width > 200 {
-                                viewModel.goToPreviousDay()
-                                HapticManager.selection()
+                                // 向右滑 → 前一天
+                                if canSwipeToPreviousDay {
+                                    viewModel.goToPreviousDay()
+                                    HapticManager.selection()
+                                } else {
+                                    HapticManager.warning()
+                                    showPaywall = true
+                                }
                             } else if value.translation.width < -threshold || value.predictedEndTranslation.width < -200 {
-                                viewModel.goToNextDay()
-                                HapticManager.selection()
+                                // 向左滑 → 后一天
+                                if canSwipeToNextDay {
+                                    viewModel.goToNextDay()
+                                    HapticManager.selection()
+                                } else {
+                                    HapticManager.warning()
+                                    showPaywall = true
+                                }
                             }
                             dragOffset = 0
                         }
@@ -47,6 +61,29 @@ struct DailyGuideContainerView: View {
             )
         }
         .ignoresSafeArea()
+        .sheet(isPresented: $showPaywall) {
+            PaywallView()
+        }
+    }
+
+    // MARK: - 滑动权限检查
+
+    /// 是否可以滑到前一天
+    private var canSwipeToPreviousDay: Bool {
+        if accessManager.isPremium { return true }
+        // 免费用户：只有当前显示的是明日时才能往回滑（回到今天）
+        let calendar = Calendar.current
+        let previousDay = calendar.date(byAdding: .day, value: -1, to: viewModel.selectedDate)!
+        return accessManager.canAccessDate(previousDay)
+    }
+
+    /// 是否可以滑到后一天
+    private var canSwipeToNextDay: Bool {
+        if accessManager.isPremium { return true }
+        // 免费用户：只有当前显示的是今天时才能往后滑（到明天）
+        let calendar = Calendar.current
+        let nextDay = calendar.date(byAdding: .day, value: 1, to: viewModel.selectedDate)!
+        return accessManager.canAccessDate(nextDay)
     }
 
     // MARK: - 今天回归按钮

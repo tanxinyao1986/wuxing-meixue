@@ -1,0 +1,278 @@
+{
+  "sourceLanguage": "zh-Hans",
+  "strings": {
+    "木": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "木"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "木"
+          }
+        }
+      }
+    },
+    "火": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "火"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "火"
+          }
+        }
+      }
+    },
+    "土": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "土"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "土"
+          }
+        }
+      }
+    },
+    "金": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "金"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "金"
+          }
+        }
+      }
+    },
+    "水": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "水"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "水"
+          }
+        }
+      }
+    },
+    "流日 · %@": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "流日 · %@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "流日 · %@"
+          }
+        }
+      }
+    },
+    "幸运五行 · %@": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ラッキー五行 · %@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "幸運五行 · %@"
+          }
+        }
+      }
+    },
+    "流日": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "流日"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "流日"
+          }
+        }
+      }
+    },
+    "流日五行": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "流日の五行"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "流日五行"
+          }
+        }
+      }
+    },
+    "幸运五行": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ラッキー五行"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "幸運五行"
+          }
+        }
+      }
+    },
+    "五行节律": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "五行リズム"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "五行節律"
+          }
+        }
+      }
+    },
+    "今日五行摘要": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日の五行サマリー"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "今日五行摘要"
+          }
+        }
+      }
+    },
+    "仁爱 · 创造 · 舒展": {
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "仁愛 · 創造 · 舒展"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "仁愛 · 創造 · 伸展"
+          }
+        }
+      }
+    },
+    "礼仪 · 表达 · 升腾": {
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "禮儀 · 表達 · 升騰"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "礼儀 · 表現 · 上昇"
+          }
+        }
+      }
+    },
+    "承载 · 稳健 · 转化": {
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "承載 · 穩健 · 轉化"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "包容 · 安定 · 転化"
+          }
+        }
+      }
+    },
+    "秩序 · 决断 · 收敛": {
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "秩序 · 決斷 · 收斂"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "秩序 · 決断 · 収斂"
+          }
+        }
+      }
+    },
+    "智慧 · 流动 · 潜藏": {
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "智慧 · 流動 · 潛藏"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "知恵 · 流動 · 潜蔵"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

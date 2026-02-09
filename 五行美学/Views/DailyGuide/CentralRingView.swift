@@ -136,13 +136,13 @@ struct CentralRingView: View {
             Text(LunarCalendar.lunarDateString(for: dayInfo.date))
                 .font(AppFont.ui(12))
                 .tracking(2)
-                .foregroundStyle(dayInfo.element.isLightBackground ? dayInfo.element.primaryTextColor.opacity(0.65) : .white.opacity(0.75))
-                .shadow(color: .black.opacity(0.20), radius: 3, x: 0, y: 1)
+                .foregroundStyle(dayInfo.element.isLightBackground ? dayInfo.element.primaryTextColor.opacity(0.90) : .white.opacity(0.78))
+                .shadow(color: dayInfo.element.isLightBackground ? .white.opacity(0.35) : .black.opacity(0.30), radius: 3, x: 0, y: 1)
 
             // 核心关键词 — 24pt Bold 纯白
             Text(dayInfo.mainKeyword)
-                .font(AppFont.calligraphy(26, weight: .semibold))
-                .tracking(2)
+                .font(.custom("PingFang SC", size: 32).weight(.medium))
+                .tracking(8)
                 .foregroundStyle(.white)
                 .shadow(color: .black.opacity(0.30), radius: 5, x: 0, y: 2)
         }

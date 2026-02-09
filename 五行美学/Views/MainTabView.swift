@@ -8,6 +8,13 @@ struct MainTabView: View {
     enum Tab: String {
         case daily = "今日"
         case calendar = "月历"
+
+        var displayName: String {
+            switch self {
+            case .daily:    return String(localized: "今日")
+            case .calendar: return String(localized: "月历")
+            }
+        }
     }
 
     var body: some View {
@@ -75,10 +82,10 @@ struct MainTabView: View {
                 Image(systemName: tab == .daily ? "sun.and.horizon" : "calendar")
                     .font(AppFont.ui(16, weight: isSelected ? .semibold : .regular))
 
-                Text(tab.rawValue)
+                Text(tab.displayName)
                     .font(AppFont.ui(14, weight: isSelected ? .semibold : .medium))
             }
-            .foregroundStyle(isSelected ? Color.white : element.iconTintColor)
+            .foregroundStyle(isSelected ? (element.isLightBackground ? Color(hex: 0x2C2C2E) : .white) : element.iconTintColor)
             .padding(.horizontal, 18)
             .padding(.vertical, 8)
             // 选中态胶囊用 .background 放置，自动贴合 HStack 尺寸，避免 Shape 膨胀到 proposed size
@@ -99,7 +106,7 @@ struct MainTabView: View {
                 }
             }
         }
-        .accessibilityLabel(tab.rawValue)
+        .accessibilityLabel(tab.displayName)
     }
 }
 

@@ -1,0 +1,2057 @@
+{
+  "sourceLanguage" : "zh-Hans",
+  "strings" : {
+    "·" : {
+
+    },
+    "【土】承载之气\n\n土主稳重、包容、滋养。以土之意象为引，可作为今日的生活提醒：\n\n• 整理空间，归纳物品\n• 照顾家人，关怀他人\n• 反思总结，沉淀经验\n• 饮食养生，调理脾胃\n\n情志宜思，少虑。在稳定中找到力量，在包容中获得智慧。" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "【土】承載の気\n\n土は安定・包容・滋養を司る。土の意象を導きに、今日の生活のヒントとしましょう：\n\n• 空間を整え、物を片付ける\n• 家族を大切にし、他者を思いやる\n• 反省し総括し、経験を沈殿させる\n• 食養生で脾胃を整える\n\n心は思慮に、心配を少なく。安定の中に力を見出し、包容の中に智慧を得ましょう。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "【土】承載之氣\n\n土主穩重、包容、滋養。以土之意象為引，可作為今日的生活提醒：\n\n• 整理空間，歸納物品\n• 照顧家人，關懷他人\n• 反思總結，沉澱經驗\n• 飲食養生，調理脾胃\n\n情志宜思，少慮。在穩定中找到力量，在包容中獲得智慧。"
+          }
+        }
+      }
+    },
+    "【木】生发之气\n\n木主生长、舒展、条达。以木之意象为引，可作为今日的生活提醒：\n\n• 开始新的计划与项目\n• 学习新知识、拓展视野\n• 户外活动，亲近自然\n• 表达创意，展现自我\n\n情志宜疏，少郁结。保持心情舒畅，让生命能量自然流动。" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "【木】生発の気\n\n木は成長・伸展・暢達を司る。木の意象を導きに、今日の生活のヒントとしましょう：\n\n• 新しい計画やプロジェクトを始める\n• 新しい知識を学び、視野を広げる\n• 屋外活動で自然と親しむ\n• 創造性を表現し、自分を輝かせる\n\n心は伸びやかに、鬱結を少なく。心地よく過ごし、生命エネルギーを自然に流しましょう。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "【木】生發之氣\n\n木主生長、舒展、條達。以木之意象為引，可作為今日的生活提醒：\n\n• 開始新的計劃與項目\n• 學習新知識、拓展視野\n• 戶外活動，親近自然\n• 表達創意，展現自我\n\n情志宜疏，少鬱結。保持心情舒暢，讓生命能量自然流動。"
+          }
+        }
+      }
+    },
+    "【水】蛰藏之气\n\n水主智慧、柔韧、潜藏。以水之意象为引，可作为今日的生活提醒：\n\n• 阅读思考，汲取智慧\n• 休息养神，储备能量\n• 倾听他人，理解包容\n• 随机应变，顺势而为\n\n情志宜静，少恐。像水一样柔软而有力量，适应任何环境。" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "【水】蓄蔵の気\n\n水は智慧・柔軟・潜蔵を司る。水の意象を導きに、今日の生活のヒントとしましょう：\n\n• 読書と思索で智慧を汲む\n• 休息で精気を蓄える\n• 傾聴し他者を理解し包容する\n• 臨機応変に、流れに従う\n\n心は静かに、恐れを少なく。水のように柔らかくも力強く、どんな環境にも適応しましょう。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "【水】蟄藏之氣\n\n水主智慧、柔韌、潛藏。以水之意象為引，可作為今日的生活提醒：\n\n• 閱讀思考，汲取智慧\n• 休息養神，儲備能量\n• 傾聽他人，理解包容\n• 隨機應變，順勢而為\n\n情志宜靜，少恐。像水一樣柔軟而有力量，適應任何環境。"
+          }
+        }
+      }
+    },
+    "【火】明亮之气\n\n火主热情、光明、向上。以火之意象为引，可作为今日的生活提醒：\n\n• 社交活动，增进感情\n• 演讲表达，展现魅力\n• 艺术创作，激发灵感\n• 重要决策，明辨是非\n\n情志宜喜，少躁。让内心的热情温暖他人，而非灼伤自己。" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "【火】明るき気\n\n火は情熱・光明・上昇を司る。火の意象を導きに、今日の生活のヒントとしましょう：\n\n• 社交活動で絆を深める\n• スピーチや表現で魅力を発揮する\n• 芸術創作でインスピレーションを呼ぶ\n• 重要な決断を明確にする\n\n心は喜びに満ち、焦りを少なく。内なる情熱で他者を温め、自身を焦がさぬように。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "【火】明亮之氣\n\n火主熱情、光明、向上。以火之意象為引，可作為今日的生活提醒：\n\n• 社交活動，增進感情\n• 演講表達，展現魅力\n• 藝術創作，激發靈感\n• 重要決策，明辨是非\n\n情志宜喜，少躁。讓內心的熱情溫暖他人，而非灼傷自己。"
+          }
+        }
+      }
+    },
+    "【金】收敛之气\n\n金主肃杀、决断、精纯。以金之意象为引，可作为今日的生活提醒：\n\n• 断舍离，清理不需要的事物\n• 完成收尾工作\n• 精简流程，提高效率\n• 冥想静心，内观自省\n\n情志宜收，少悲。学会放下，在减法中找到生命的本质。" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "【金】収斂の気\n\n金は粛殺・決断・精純を司る。金の意象を導きに、今日の生活のヒントとしましょう：\n\n• 断捨離で不要なものを手放す\n• 仕上げの仕事を完了させる\n• プロセスを簡素化し、効率を高める\n• 瞑想で内省する\n\n心は収め、悲しみを少なく。手放すことを学び、引き算の中に生命の本質を見出しましょう。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "【金】收斂之氣\n\n金主肅殺、決斷、精純。以金之意象為引，可作為今日的生活提醒：\n\n• 斷捨離，清理不需要的事物\n• 完成收尾工作\n• 精簡流程，提高效率\n• 冥想靜心，內觀自省\n\n情志宜收，少悲。學會放下，在減法中找到生命的本質。"
+          }
+        }
+      }
+    },
+    "%@%@" : {
+
+    },
+    "%lld" : {
+
+    },
+    "1.0.0" : {
+
+    },
+    "iCloud 自动同步" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud 自動同期"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud 自動同步"
+          }
+        }
+      }
+    },
+    "一句话的力量" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一言の力"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一句話的力量"
+          }
+        }
+      }
+    },
+    "上一个月" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前月"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "上一個月"
+          }
+        }
+      }
+    },
+    "下一个月" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "翌月"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下一個月"
+          }
+        }
+      }
+    },
+    "不太建议" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "控えめに"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不太建議"
+          }
+        }
+      }
+    },
+    "与%@气共振" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@の気と共鳴"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "與%@氣共振"
+          }
+        }
+      }
+    },
+    "五行节律" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "五行リズム"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "五行節律"
+          }
+        }
+      }
+    },
+    "五行解析" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "五行の解析"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "五行解析"
+          }
+        }
+      }
+    },
+    "今天" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今天"
+          }
+        }
+      }
+    },
+    "今日" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日"
+          }
+        }
+      }
+    },
+    "今日五行" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日の五行"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日五行"
+          }
+        }
+      }
+    },
+    "今日五行摘要" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日の五行サマリー"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日五行摘要"
+          }
+        }
+      }
+    },
+    "今日关键词" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日のキーワード"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日關鍵詞"
+          }
+        }
+      }
+    },
+    "今日宜穿舒适自然的衣物，让身心与自然和谐共振。" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日は心地よい自然な衣服を選び、心身を自然と調和させましょう。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日宜穿舒適自然的衣物，讓身心與自然和諧共振。"
+          }
+        }
+      }
+    },
+    "今日建议" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日のアドバイス"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日建議"
+          }
+        }
+      }
+    },
+    "今日心念之锚" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日の心のアンカー"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日心念之錨"
+          }
+        }
+      }
+    },
+    "今日能量关键词：平和 · 稳定 · 觉知" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日のエネルギーキーワード：平和 · 安定 · 気づき"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日能量關鍵詞：平和 · 穩定 · 覺知"
+          }
+        }
+      }
+    },
+    "今日能量着装" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日のエネルギー装い"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日能量著裝"
+          }
+        }
+      }
+    },
+    "今日行动指南" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日の行動ガイド"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日行動指南"
+          }
+        }
+      }
+    },
+    "今日身心空间" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日の心身スペース"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日身心空間"
+          }
+        }
+      }
+    },
+    "今日顺时食饮" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日の旬の食養"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日順時食飲"
+          }
+        }
+      }
+    },
+    "会员" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "会員"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "會員"
+          }
+        }
+      }
+    },
+    "会员状态" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "会員ステータス"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "會員狀態"
+          }
+        }
+      }
+    },
+    "使用条款" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "利用規約"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用條款"
+          }
+        }
+      }
+    },
+    "保存" : {
+
+    },
+    "免责声明" : {
+
+    },
+    "免费版本" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無料版"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "免費版本"
+          }
+        }
+      }
+    },
+    "关于" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "情報"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "關於"
+          }
+        }
+      }
+    },
+    "关键词" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "キーワード"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "關鍵詞"
+          }
+        }
+      }
+    },
+    "关闭" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "閉じる"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "關閉"
+          }
+        }
+      }
+    },
+    "关闭五行解释" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "五行の説明を閉じる"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "關閉五行解釋"
+          }
+        }
+      }
+    },
+    "内容为一般生活方式建议，不构成医疗诊断或治疗意见；如有健康问题请咨询专业医护人员。" : {
+
+    },
+    "最划算" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "お得"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最划算"
+          }
+        }
+      }
+    },
+    "农历" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "旧暦"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "農曆"
+          }
+        }
+      }
+    },
+    "创造滋养的环境" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "養いの空間を創る"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "創造滋養的環境"
+          }
+        }
+      }
+    },
+    "到期时间：%@" : {
+
+    },
+    "升级以解锁所有功能" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アップグレードして全機能を解放"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "升級以解鎖所有功能"
+          }
+        }
+      }
+    },
+    "双击选择此日期" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ダブルタップでこの日付を選択"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "雙擊選擇此日期"
+          }
+        }
+      }
+    },
+    "取消" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "キャンセル"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消"
+          }
+        }
+      }
+    },
+    "可尝试" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "おすすめ"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "可嘗試"
+          }
+        }
+      }
+    },
+    "土" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "土"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "土"
+          }
+        }
+      }
+    },
+    "外在空间的整洁，映射内心的清明。" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "外の空間の整えは、心の澄み切りを映します。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "外在空間的整潔，映射內心的清明。"
+          }
+        }
+      }
+    },
+    "多设备同步" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "マルチデバイス同期"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "多設備同步"
+          }
+        }
+      }
+    },
+    "好的" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "好的"
+          }
+        }
+      }
+    },
+    "完成" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完了"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完成"
+          }
+        }
+      }
+    },
+    "完整日历" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完全カレンダー"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完整日曆"
+          }
+        }
+      }
+    },
+    "将清除本地会员状态，App 将恢复为免费版显示。\n（StoreKit 沙盒购买记录需在「设置 > App Store > 沙盒账户」中清除）" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ローカルの会員ステータスをクリアし、無料版表示に戻します。\n（StoreKit サンドボックスの購入記録は「設定 > App Store > サンドボックスアカウント」でクリアしてください）"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "將清除本地會員狀態，App 將恢復為免費版顯示。\n（StoreKit 沙盒購買記錄需在「設置 > App Store > 沙盒帳戶」中清除）"
+          }
+        }
+      }
+    },
+    "已收藏" : {
+
+    },
+    "已选中" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択中"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已選中"
+          }
+        }
+      }
+    },
+    "平和安宁" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "平和安寧"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "平和安寧"
+          }
+        }
+      }
+    },
+    "年度会员" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "年間会員"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "年度會員"
+          }
+        }
+      }
+    },
+    "幸运五行" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ラッキー五行"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "幸運五行"
+          }
+        }
+      }
+    },
+    "开发者重置" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開発者リセット"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開發者重置"
+          }
+        }
+      }
+    },
+    "开启五行智慧之旅" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "五行の知恵の旅を始めよう"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開啟五行智慧之旅"
+          }
+        }
+      }
+    },
+    "当心绪不宁时，回到这句话，找到内心的锚点。" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "心が落ち着かないとき、この言葉に戻り、心の拠り所を見つけましょう。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "當心緒不寧時，回到這句話，找到內心的錨點。"
+          }
+        }
+      }
+    },
+    "当日五行能量澄明。" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本日の五行エネルギーは澄んでいます。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "當日五行能量澄明。"
+          }
+        }
+      }
+    },
+    "心念之锚" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "心のアンカー"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "心念之錨"
+          }
+        }
+      }
+    },
+    "心念之锚，水元素，点击查看今日心念建议" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "心のアンカー、水の元素、タップして今日の心念アドバイスを表示"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "心念之錨，水元素，點擊查看今日心念建議"
+          }
+        }
+      }
+    },
+    "恢复购买" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "購入を復元"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "恢復購買"
+          }
+        }
+      }
+    },
+    "恭喜！你已成功解锁所有五行节律功能" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "おめでとうございます！五行リズムの全機能がアンロックされました"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "恭喜！你已成功解鎖所有五行節律功能"
+          }
+        }
+      }
+    },
+    "慎行" : {
+
+    },
+    "所有五行节律功能" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "すべての五行リズム機能"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "所有五行節律功能"
+          }
+        }
+      }
+    },
+    "收藏此日" : {
+
+    },
+    "整理空间，让能量自由流动，创造宁静的环境。" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "空間を整え、エネルギーを自由に流し、静かな環境を作りましょう。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "整理空間，讓能量自由流動，創造寧靜的環境。"
+          }
+        }
+      }
+    },
+    "无" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "なし"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無"
+          }
+        }
+      }
+    },
+    "日" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "日"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "日"
+          }
+        }
+      }
+    },
+    "月历" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "カレンダー"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "月曆"
+          }
+        }
+      }
+    },
+    "月度会员" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "月額会員"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "月度會員"
+          }
+        }
+      }
+    },
+    "木" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "木"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "木"
+          }
+        }
+      }
+    },
+    "未订阅" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未購読"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未訂閱"
+          }
+        }
+      }
+    },
+    "本应用基于传统文化与生活方式的灵感提示，帮助你建立生活节律与正念觉察，不提供占卜、预测或迷信内容。" : {
+
+    },
+    "查看全年五行节律" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "年間の五行リズムを確認"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看全年五行節律"
+          }
+        }
+      }
+    },
+    "查看订阅选项" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サブスクリプションを表示"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看訂閱選項"
+          }
+        }
+      }
+    },
+    "桌面小组件" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ウィジェット"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "桌面小組件"
+          }
+        }
+      }
+    },
+    "此刻，我与自然同频共振，内心平静而有力量。" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この瞬間、私は自然と共鳴し、心は穏やかで力強い。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此刻，我與自然同頻共振，內心平靜而有力量。"
+          }
+        }
+      }
+    },
+    "此日期需要订阅会员" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この日付は会員登録が必要です"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此日期需要訂閱會員"
+          }
+        }
+      }
+    },
+    "每年" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "年額"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "每年"
+          }
+        }
+      }
+    },
+    "每日笔记" : {
+
+    },
+    "每月" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "月額"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "每月"
+          }
+        }
+      }
+    },
+    "每月仅3元" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "月額わずか3元"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "每月僅3元"
+          }
+        }
+      }
+    },
+    "水" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "水"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "水"
+          }
+        }
+      }
+    },
+    "永久有效" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "永久有効"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "永久有效"
+          }
+        }
+      }
+    },
+    "流日" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "流日"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "流日"
+          }
+        }
+      }
+    },
+    "流日五行" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "流日の五行"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "流日五行"
+          }
+        }
+      }
+    },
+    "流转 · 平衡" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "流転 · 均衡"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "流轉 · 平衡"
+          }
+        }
+      }
+    },
+    "深度解读" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "深い解説"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "深度解讀"
+          }
+        }
+      }
+    },
+    "滋养身心的选择" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "心身を養う選択"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "滋養身心的選擇"
+          }
+        }
+      }
+    },
+    "火" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "火"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "火"
+          }
+        }
+      }
+    },
+    "版本" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "バージョン"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "版本"
+          }
+        }
+      }
+    },
+    "确定" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "確認"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "確定"
+          }
+        }
+      }
+    },
+    "确认重置" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "リセットを確認"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "確認重置"
+          }
+        }
+      }
+    },
+    "穿着能量色，让外在与内在和谐共振。" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "エネルギーカラーを纏い、外と内を調和させましょう。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "穿著能量色，讓外在與內在和諧共振。"
+          }
+        }
+      }
+    },
+    "立即订阅" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今すぐ購読"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "立即訂閱"
+          }
+        }
+      }
+    },
+    "精美便捷的桌面小组件" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "美しく便利なウィジェット"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "精美便捷的桌面小組件"
+          }
+        }
+      }
+    },
+    "终身会员" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "永久会員"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "終身會員"
+          }
+        }
+      }
+    },
+    "联系我们" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "お問い合わせ"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "聯繫我們"
+          }
+        }
+      }
+    },
+    "能量着装" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "エネルギー装い"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "能量著裝"
+          }
+        }
+      }
+    },
+    "能量着装，木元素，点击查看今日穿搭建议" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "エネルギー装い、木の元素、タップして今日の装いアドバイスを表示"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "能量著裝，木元素，點擊查看今日穿搭建議"
+          }
+        }
+      }
+    },
+    "获取详细的五行指导" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "詳しい五行ガイドを取得"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "獲取詳細的五行指導"
+          }
+        }
+      }
+    },
+    "行动与等待同样重要，关键在于时机。" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行動と待つことは同じく大切、鍵はタイミング。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行動與等待同樣重要，關鍵在於時機。"
+          }
+        }
+      }
+    },
+    "行动指南" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行動ガイド"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行動指南"
+          }
+        }
+      }
+    },
+    "行动指南，金元素，点击查看今日行动建议" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行動ガイド、金の元素、タップして今日の行動アドバイスを表示"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行動指南，金元素，點擊查看今日行動建議"
+          }
+        }
+      }
+    },
+    "解锁全部功能，每月自动续费。" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全機能を解除、毎月自動更新。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "解鎖全部功能，每月自動續費。"
+          }
+        }
+      }
+    },
+    "解锁完整体验" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "フル体験をアンロック"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "解鎖完整體驗"
+          }
+        }
+      }
+    },
+    "解锁完整内容" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "フルコンテンツを解放"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "解鎖完整內容"
+          }
+        }
+      }
+    },
+    "触觉反馈" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "触覚フィードバック"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "觸覺回饋"
+          }
+        }
+      }
+    },
+    "订阅会员解锁所有模块" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "会員登録で全モジュール解放"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "訂閱會員解鎖所有模組"
+          }
+        }
+      }
+    },
+    "让心绪安定，行动自然清晰。" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "心を落ち着かせれば、行動は自ずと明確になります。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "讓心緒安定，行動自然清晰。"
+          }
+        }
+      }
+    },
+    "设置" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設置"
+          }
+        }
+      }
+    },
+    "详情" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "詳細"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "詳情"
+          }
+        }
+      }
+    },
+    "请重启 App 以确保所有状态生效" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "すべてのステータスを反映するため、アプリを再起動してください"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "請重啟 App 以確保所有狀態生效"
+          }
+        }
+      }
+    },
+    "购买失败" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "購入失敗"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "購買失敗"
+          }
+        }
+      }
+    },
+    "购买成功" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "購入成功"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "購買成功"
+          }
+        }
+      }
+    },
+    "跳转到今天" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日に移動"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "跳轉到今天"
+          }
+        }
+      }
+    },
+    "身心空间" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "心身スペース"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "身心空間"
+          }
+        }
+      }
+    },
+    "身心空间，土元素，点击查看今日空间建议" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "心身スペース、土の元素、タップして今日の空間アドバイスを表示"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "身心空間，土元素，點擊查看今日空間建議"
+          }
+        }
+      }
+    },
+    "返回今天" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日に戻る"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "返回今天"
+          }
+        }
+      }
+    },
+    "通用" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一般"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通用"
+          }
+        }
+      }
+    },
+    "通知提醒" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通知リマインダー"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通知提醒"
+          }
+        }
+      }
+    },
+    "重置完成" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "リセット完了"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重置完成"
+          }
+        }
+      }
+    },
+    "金" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "金"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "金"
+          }
+        }
+      }
+    },
+    "隐私政策" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "プライバシーポリシー"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "隱私政策"
+          }
+        }
+      }
+    },
+    "顺势" : {
+
+    },
+    "顺势而为，回到当下。" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "流れに任せ、今この瞬間に戻りましょう。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "順勢而為，回到當下。"
+          }
+        }
+      }
+    },
+    "顺势而为，把握时机，让行动与自然节律同步。" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "流れに乗り、タイミングを掴み、行動を自然のリズムと同期させましょう。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "順勢而為，把握時機，讓行動與自然節律同步。"
+          }
+        }
+      }
+    },
+    "顺势而为的智慧" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "流れに乗る知恵"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "順勢而為的智慧"
+          }
+        }
+      }
+    },
+    "顺应时节，让食物成为身体的良药。" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "季節に順い、食を体の良薬にしましょう。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "順應時節，讓食物成為身體的良藥。"
+          }
+        }
+      }
+    },
+    "顺应时节，选择当季食材，滋养身心。" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "季節に順い、旬の食材を選び、心身を養いましょう。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "順應時節，選擇當季食材，滋養身心。"
+          }
+        }
+      }
+    },
+    "顺时指引" : {
+
+    },
+    "顺时食饮" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "旬の食養"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "順時食飲"
+          }
+        }
+      }
+    },
+    "顺时食饮，火元素，点击查看今日饮食建议" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "旬の食養、火の元素、タップして今日の食事アドバイスを表示"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "順時食飲，火元素，點擊查看今日飲食建議"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

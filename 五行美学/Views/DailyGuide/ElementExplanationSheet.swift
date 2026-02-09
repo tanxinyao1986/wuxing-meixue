@@ -5,7 +5,7 @@ struct ElementExplanationSheet: View {
     let dayInfo: DayInfo
     @Environment(\.dismiss) var dismiss
     /// 解释页实体色背景仅 metal 足够亮，需切为暗色文字
-    private var sheetLightBg: Bool { displayElement == .metal || displayElement == .earth }
+    private var sheetLightBg: Bool { displayElement == .metal }
     /// 解释页主体展示“幸运五行”
     private var displayElement: FiveElement { dayInfo.element }
     private var insight: ElementInsight { ElementInsightLoader.shared.insight(for: displayElement) }
@@ -61,21 +61,21 @@ struct ElementExplanationSheet: View {
                     .padding(.top, 24)
 
                     // 元素名称
-                    Text(displayElement.rawValue)
+                    Text(displayElement.displayName)
                         .font(AppFont.display(28, weight: .bold))
                         .foregroundStyle(sheetLightBg ? displayElement.color : displayElement.glowColor)
                         .shadow(color: sheetLightBg ? .clear : displayElement.coreColor.opacity(0.4), radius: 6, x: 0, y: 2)
 
                     // 流日干支 & 幸运五行
                     HStack(spacing: 12) {
-                        labelPill(title: "流日", value: dayInfo.ganzhiDay)
-                        labelPill(title: "流日五行", value: dayInfo.dayElement.rawValue)
-                        labelPill(title: "幸运五行", value: dayInfo.element.rawValue)
+                        labelPill(title: String(localized: "流日"), value: dayInfo.ganzhiDay)
+                        labelPill(title: String(localized: "流日五行"), value: dayInfo.dayElement.displayName)
+                        labelPill(title: String(localized: "幸运五行"), value: dayInfo.element.displayName)
                     }
                     .padding(.horizontal, 20)
 
                     // 五行解析
-                    section(title: "五行解析") {
+                    section(title: String(localized: "五行解析")) {
                         VStack(alignment: .leading, spacing: 8) {
                             Text(insight.opening)
                             Text(insight.direction)
@@ -85,7 +85,7 @@ struct ElementExplanationSheet: View {
                     }
 
                     // 关键词能量
-                    section(title: "关键词能量") {
+                    section(title: String(localized: "关键词")) {
                         VStack(alignment: .leading, spacing: 10) {
                             Text(keywordLine)
                                 .font(AppFont.calligraphy(20, weight: .semibold))
@@ -95,11 +95,11 @@ struct ElementExplanationSheet: View {
                         }
                     }
 
-                    // 当日宜忌
-                    section(title: "当日宜忌") {
+                    // 顺时指引
+                    section(title: String(localized: "顺时指引")) {
                         VStack(alignment: .leading, spacing: 8) {
-                            yiJiRow(title: "宜", items: yiJi.yi)
-                            yiJiRow(title: "忌", items: yiJi.ji)
+                            yiJiRow(title: String(localized: "顺势"), items: yiJi.yi)
+                            yiJiRow(title: String(localized: "慎行"), items: yiJi.ji)
                         }
                         .font(AppFont.ui(14))
                     }
@@ -119,17 +119,17 @@ struct ElementExplanationSheet: View {
                 }
                 .ignoresSafeArea()
             )
-            .navigationTitle("今日五行")
+            .navigationTitle(String(localized: "今日五行"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("完成") {
+                    Button(String(localized: "完成")) {
                         dismiss()
                     }
                     .font(AppFont.ui(15, weight: .medium))
                     .foregroundStyle(sheetLightBg ? displayElement.color : displayElement.glowColor)
-                    .accessibilityLabel("关闭五行解释")
+                    .accessibilityLabel(String(localized: "关闭五行解释"))
                 }
             }
         }
@@ -160,7 +160,7 @@ struct ElementExplanationSheet: View {
 
     private func formatted(_ items: [String]) -> String {
         if items.isEmpty {
-            return "无"
+            return String(localized: "无")
         }
         return items.joined(separator: " · ")
     }
@@ -190,15 +190,15 @@ struct ElementExplanationSheet: View {
         HStack(alignment: .top, spacing: 8) {
             Text(title)
                 .font(AppFont.ui(12, weight: .semibold))
-                .foregroundStyle(sheetLightBg ? displayElement.color : displayElement.glowColor)
-                .padding(.horizontal, 8)
-                .padding(.vertical, 3)
+                .foregroundStyle(sheetLightBg ? Color(hex: 0x1C1C1E) : Color.white)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 4)
                 .background(
                     Capsule()
-                        .fill(.ultraThinMaterial)
+                        .fill(sheetLightBg ? Color.white.opacity(0.85) : Color.black.opacity(0.28))
                         .overlay(
                             Capsule()
-                                .stroke(sheetLightBg ? Color.black.opacity(0.10) : Color.white.opacity(0.25), lineWidth: 0.5)
+                                .stroke(sheetLightBg ? Color.black.opacity(0.18) : Color.white.opacity(0.35), lineWidth: 0.6)
                         )
                 )
             Text(formatted(items))

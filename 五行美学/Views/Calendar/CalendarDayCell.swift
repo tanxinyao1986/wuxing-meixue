@@ -8,25 +8,52 @@ struct CalendarDayCell: View {
     let element: FiveElement
 
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
+    @StateObject private var accessManager = FeatureAccessManager.shared
 
     private let calendar = Calendar.current
 
+    // 是否锁定（免费版只能看今天和明天）
+    private var isLocked: Bool {
+        !accessManager.canAccessDate(date)
+    }
+
     var body: some View {
-        VStack(spacing: 3) {
-            // 公历日期
-            Text("\(calendar.component(.day, from: date))")
-                .font(AppFont.display(scaledFontSize(base: 17), weight: isToday ? .bold : .medium))
-                .foregroundStyle(textColor)
+        ZStack {
+            VStack(spacing: 3) {
+                // 公历日期
+                Text("\(calendar.component(.day, from: date))")
+                    .font(AppFont.display(scaledFontSize(base: 17), weight: isToday ? .bold : .medium))
+                    .foregroundStyle(textColor)
 
-            // 农历日期
-            Text(LunarCalendar.shortLunarString(for: date))
-                .font(AppFont.ui(scaledFontSize(base: 9)))
-                .foregroundStyle(lunarTextColor)
-                .lineLimit(1)
-                .minimumScaleFactor(0.7)
+                // 农历日期
+                Text(LunarCalendar.shortLunarString(for: date))
+                    .font(AppFont.ui(scaledFontSize(base: 9)))
+                    .foregroundStyle(lunarTextColor)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
 
-            // 五行彩色圆点指示器
-            elementIndicator
+                // 五行彩色圆点指示器（锁定时不显示）
+                if !isLocked {
+                    elementIndicator
+                } else {
+                    Color.clear.frame(height: 10)
+                }
+            }
+            .opacity(isLocked ? 0.3 : 1.0)
+
+            // 锁定图标
+            if isLocked {
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Image(systemName: "lock.fill")
+                            .font(.system(size: 10))
+                            .foregroundColor(.gray.opacity(0.5))
+                            .padding(4)
+                    }
+                }
+            }
         }
         .frame(maxWidth: .infinity)
         .frame(height: 64)
@@ -34,7 +61,7 @@ struct CalendarDayCell: View {
         .accessibilityElement(children: .combine)
         .accessibilityLabel(accessibilityDescription)
         .accessibilityAddTraits(.isButton)
-        .accessibilityHint("双击选择此日期")
+        .accessibilityHint(isLocked ? String(localized: "此日期需要订阅会员") : String(localized: "双击选择此日期"))
     }
 
     // MARK: - 五行彩色圆点指示器
@@ -110,9 +137,13 @@ struct CalendarDayCell: View {
     }
 
     // MARK: - 样式
+    private var selectedTextColor: Color {
+        element.isLightBackground ? Color(hex: 0x2C2C2E) : .white
+    }
+
     private var textColor: Color {
         if isSelected {
-            return .white
+            return selectedTextColor
         } else if isToday {
             return element.color
         }
@@ -122,7 +153,7 @@ struct CalendarDayCell: View {
     private var lunarTextColor: Color {
         let isSpecialDay = LunarCalendar.isSpecialLunarDay(for: date)
         if isSelected {
-            return Color.white.opacity(0.85)
+            return selectedTextColor.opacity(0.85)
         } else if isSpecialDay {
             return .orange
         }
@@ -131,17 +162,17 @@ struct CalendarDayCell: View {
 
     private var accessibilityDescription: String {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "zh_CN")
+        formatter.locale = Locale.current
         formatter.dateFormat = "M月d日"
         let gregorian = formatter.string(from: date)
         let lunar = LunarCalendar.lunarDateString(for: date)
 
-        var description = "\(gregorian)，农历\(lunar)，\(element.rawValue)日"
+        var description = "\(gregorian)，\(String(localized: "农历"))\(lunar)，\(element.displayName)\(String(localized: "日"))"
         if isToday {
-            description += "，今天"
+            description += "，\(String(localized: "今天"))"
         }
         if isSelected {
-            description += "，已选中"
+            description += "，\(String(localized: "已选中"))"
         }
         return description
     }

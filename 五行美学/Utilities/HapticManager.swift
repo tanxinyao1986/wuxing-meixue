@@ -177,4 +177,9 @@ enum HapticManager {
         generator.prepare()
         generator.notificationOccurred(type)
     }
+
+    /// 警告反馈（功能锁定时使用）
+    static func warning() {
+        notification(.warning)
+    }
 }
