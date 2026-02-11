@@ -17,6 +17,8 @@ struct PaywallView: View {
     @State private var showError = false
     @State private var errorMessage = ""
     @State private var showSuccess = false
+    @State private var showPrivacyPolicy = false
+    @State private var showSupport = false
 
     var body: some View {
         NavigationStack {
@@ -80,6 +82,12 @@ struct PaywallView: View {
             Button("确定", role: .cancel) {}
         } message: {
             Text(errorMessage)
+        }
+        .sheet(isPresented: $showPrivacyPolicy) {
+            PrivacyPolicyView()
+        }
+        .sheet(isPresented: $showSupport) {
+            SupportView()
         }
     }
 
@@ -185,9 +193,13 @@ struct PaywallView: View {
             }
 
             HStack(spacing: 20) {
-                Link("隐私政策", destination: URL(string: "https://yourwebsite.com/privacy")!)
+                Button("隐私政策") {
+                    showPrivacyPolicy = true
+                }
                 Text("·")
-                Link("使用条款", destination: URL(string: "https://yourwebsite.com/terms")!)
+                Button("技术支持") {
+                    showSupport = true
+                }
             }
             .font(.caption)
             .foregroundColor(.white.opacity(0.5))

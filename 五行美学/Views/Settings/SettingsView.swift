@@ -13,6 +13,9 @@ struct SettingsView: View {
     @State private var versionTapCount = 0
     @State private var showResetAlert = false
     @State private var showResetDone = false
+    @State private var showContactAlert = false
+    @State private var showPrivacyPolicy = false
+    @State private var showSupport = false
 
     var body: some View {
         NavigationStack {
@@ -38,9 +41,15 @@ struct SettingsView: View {
 
                 // 关于部分
                 Section {
-                    Link("隐私政策", destination: URL(string: "https://yourwebsite.com/privacy")!)
-                    Link("使用条款", destination: URL(string: "https://yourwebsite.com/terms")!)
-                    Link("联系我们", destination: URL(string: "mailto:support@yourapp.com")!)
+                    Button("隐私政策") {
+                        showPrivacyPolicy = true
+                    }
+                    Button("技术支持") {
+                        showSupport = true
+                    }
+                    Button("联系我们") {
+                        showContactAlert = true
+                    }
                 } header: {
                     Text("关于")
                 }
@@ -76,6 +85,12 @@ struct SettingsView: View {
         .sheet(isPresented: $showPaywall) {
             PaywallView()
         }
+        .sheet(isPresented: $showPrivacyPolicy) {
+            PrivacyPolicyView()
+        }
+        .sheet(isPresented: $showSupport) {
+            SupportView()
+        }
         .alert("开发者重置", isPresented: $showResetAlert) {
             Button("确认重置", role: .destructive) {
                 resetToNewUser()
@@ -83,6 +98,14 @@ struct SettingsView: View {
             Button("取消", role: .cancel) {}
         } message: {
             Text("将清除本地会员状态，App 将恢复为免费版显示。\n（StoreKit 沙盒购买记录需在「设置 > App Store > 沙盒账户」中清除）")
+        }
+        .alert("联系作者", isPresented: $showContactAlert) {
+            Button("复制邮箱") {
+                UIPasteboard.general.string = "bhzbtxy@163.com"
+            }
+            Button("关闭", role: .cancel) {}
+        } message: {
+            Text("如有问题，请联系邮箱：\nbhzbtxy@163.com")
         }
         .alert("重置完成", isPresented: $showResetDone) {
             Button("好的") {}

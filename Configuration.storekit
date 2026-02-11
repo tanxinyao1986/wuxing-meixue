@@ -1,4 +1,14 @@
 {
+  "appPolicies" : {
+    "eula" : "",
+    "policies" : [
+      {
+        "locale" : "en_US",
+        "policyText" : "",
+        "policyURL" : ""
+      }
+    ]
+  },
   "identifier" : "Configuration",
   "nonRenewingSubscriptions" : [
 
@@ -12,7 +22,7 @@
         {
           "description" : "一次购买，终身使用。解锁所有五行美学功能，无需续费。",
           "displayName" : "终身会员",
-          "locale" : "zh_CN"
+          "locale" : "zh_Hans"
         }
       ],
       "productID" : "com.xinyao.wuxing.lifetime",
@@ -21,56 +31,53 @@
     }
   ],
   "settings" : {
+    "_askToBuyEnabled" : false,
+    "_billingGracePeriodEnabled" : false,
+    "_billingIssuesEnabled" : false,
+    "_disableDialogs" : false,
     "_failTransactionsEnabled" : false,
-    "_locale" : "zh_CN",
+    "_locale" : "zh_Hans",
+    "_renewalBillingIssuesEnabled" : false,
     "_storefront" : "CHN",
     "_storeKitErrors" : [
       {
-        "current" : null,
         "enabled" : false,
         "name" : "Load Products"
       },
       {
-        "current" : null,
         "enabled" : false,
         "name" : "Purchase"
       },
       {
-        "current" : null,
         "enabled" : false,
         "name" : "Verification"
       },
       {
-        "current" : null,
         "enabled" : false,
         "name" : "App Store Sync"
       },
       {
-        "current" : null,
         "enabled" : false,
         "name" : "Subscription Status"
       },
       {
-        "current" : null,
         "enabled" : false,
         "name" : "App Transaction"
       },
       {
-        "current" : null,
         "enabled" : false,
         "name" : "Manage Subscriptions Sheet"
       },
       {
-        "current" : null,
         "enabled" : false,
         "name" : "Refund Request Sheet"
       },
       {
-        "current" : null,
         "enabled" : false,
         "name" : "Offer Code Redeem Sheet"
       }
-    ]
+    ],
+    "_timeRate" : 0
   },
   "subscriptionGroups" : [
     {
@@ -79,7 +86,7 @@
         {
           "description" : "解锁五行美学所有高级功能",
           "displayName" : "五行美学会员",
-          "locale" : "zh_CN"
+          "locale" : "zh_Hans"
         }
       ],
       "name" : "五行美学会员",
@@ -100,7 +107,7 @@
             {
               "description" : "按月订阅，随时可取消。",
               "displayName" : "月度会员",
-              "locale" : "zh_CN"
+              "locale" : "zh_Hans"
             }
           ],
           "productID" : "com.xinyao.wuxing.monthly",
@@ -132,7 +139,7 @@
             {
               "description" : "首次订阅享7天免费试用，相当于每月不到5元。",
               "displayName" : "年度会员",
-              "locale" : "zh_CN"
+              "locale" : "zh_Hans"
             }
           ],
           "productID" : "com.xinyao.wuxing.yearly",
