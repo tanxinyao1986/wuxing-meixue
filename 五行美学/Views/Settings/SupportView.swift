@@ -41,7 +41,8 @@ struct SupportView: View {
                     cardView {
                         Text("常见问题")
                             .font(.headline)
-                        bulletPoint("订阅/恢复购买：请在 App 内设置页点击"恢复购买"。")
+                        bulletPoint("恢复购买：请在 App 内「设置」页点击“恢复购买”（不会重复扣费）。")
+                        bulletPoint("取消订阅：请前往 iPhone「设置 > Apple ID > 订阅」进行管理。")
                         bulletPoint("数据同步：请确保 iCloud 登录且网络正常。")
                         bulletPoint("提醒未生效：检查系统通知权限与勿扰模式。")
                     }
@@ -54,7 +55,16 @@ struct SupportView: View {
                             .foregroundColor(.secondary)
                     }
 
-                    Text("最后更新：2026-02-09")
+                    // 订阅说明
+                    cardView {
+                        Text("订阅说明")
+                            .font(.headline)
+                        bulletPoint("订阅为自动续期项目，续费由 Apple 在到期前自动处理。")
+                        bulletPoint("你可以在系统订阅设置中随时取消自动续期。")
+                        bulletPoint("隐私政策与技术支持入口均可在 App 内查看。")
+                    }
+
+                    Text("最后更新：2026-02-12")
                         .font(.caption)
                         .foregroundColor(.secondary)
                         .padding(.top, 8)
