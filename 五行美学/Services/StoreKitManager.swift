@@ -118,6 +118,16 @@ class StoreKitManager: ObservableObject {
         return false
     }
 
+    /// 获取当前活跃的交易详情（用于设置页显示订阅类型和到期时间）
+    func getActiveTransaction() async -> Transaction? {
+        for await result in Transaction.currentEntitlements {
+            if case .verified(let transaction) = result {
+                return transaction
+            }
+        }
+        return nil
+    }
+
     // MARK: - 私有方法
 
     private func updatePurchasedProducts() async {

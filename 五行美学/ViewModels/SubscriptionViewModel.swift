@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import StoreKit
 import Combine
 
 @MainActor
@@ -34,6 +35,17 @@ class SubscriptionViewModel: ObservableObject {
 
         if hasActiveSubscription {
             isPremium = true
+            // 获取实际交易详情，填充订阅状态供设置页显示
+            if let transaction = await storeManager.getActiveTransaction() {
+                subscriptionStatus = SubscriptionStatus(
+                    userId: "",
+                    productId: transaction.productID,
+                    purchaseDate: transaction.purchaseDate,
+                    expirationDate: transaction.expirationDate,
+                    isActive: true,
+                    transactionId: String(transaction.id)
+                )
+            }
         } else {
             // 2. 如果本地没有，检查 Supabase（跨设备同步）
             await checkSupabaseStatus()
